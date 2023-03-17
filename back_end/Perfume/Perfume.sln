@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Perfume.Common", "Perfume.Common\Perfume.Common.csproj", "{91785F87-15BC-47D8-B8F3-0F9BFBABC339}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Perfume.DAL", "Perfume.DLL\Perfume.DAL.csproj", "{091235F6-DDC8-4EDF-B90F-71CB8B1EA4F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Perfume.BL", "Perfume.BLL\Perfume.BL.csproj", "{489C111C-2FBA-41BE-AE06-526BADF1C488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfume.API", "Perfume.API\Perfume.API.csproj", "{8D265659-18BA-491B-B994-365F875DB088}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91785F87-15BC-47D8-B8F3-0F9BFBABC339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91785F87-15BC-47D8-B8F3-0F9BFBABC339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91785F87-15BC-47D8-B8F3-0F9BFBABC339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91785F87-15BC-47D8-B8F3-0F9BFBABC339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091235F6-DDC8-4EDF-B90F-71CB8B1EA4F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091235F6-DDC8-4EDF-B90F-71CB8B1EA4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091235F6-DDC8-4EDF-B90F-71CB8B1EA4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091235F6-DDC8-4EDF-B90F-71CB8B1EA4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{489C111C-2FBA-41BE-AE06-526BADF1C488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489C111C-2FBA-41BE-AE06-526BADF1C488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489C111C-2FBA-41BE-AE06-526BADF1C488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489C111C-2FBA-41BE-AE06-526BADF1C488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D265659-18BA-491B-B994-365F875DB088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D265659-18BA-491B-B994-365F875DB088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D265659-18BA-491B-B994-365F875DB088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D265659-18BA-491B-B994-365F875DB088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DCAB590-75F8-4D88-B74C-BCDB3B3A820B}
+	EndGlobalSection
+EndGlobal

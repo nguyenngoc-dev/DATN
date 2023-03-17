@@ -1,0 +1,264 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.API\\Perfume.API.csproj": {}
+  },
+  "projects": {
+    "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.API\\Perfume.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.API\\Perfume.API.csproj",
+        "projectName": "Perfume.API",
+        "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.API\\Perfume.API.csproj",
+        "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
+        "outputPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\Perfume.BL.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\Perfume.BL.csproj"
+              },
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj"
+              },
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\Perfume.BL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\Perfume.BL.csproj",
+        "projectName": "Perfume.BL",
+        "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\Perfume.BL.csproj",
+        "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
+        "outputPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj"
+              },
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj",
+        "projectName": "Perfume.Common",
+        "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj",
+        "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
+        "outputPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj",
+        "projectName": "Perfume.DAL",
+        "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\Perfume.DAL.csproj",
+        "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
+        "outputPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.DLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj": {
+                "projectPath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -118,7 +118,7 @@ namespace Perfume.DAL
             var parameters = new DynamicParameters();
             parameters.Add("@p_PageSize", pageSize);
             parameters.Add("@p_PageNumber", pageNumber);
-            parameters.Add("@p_EmployeeFilter", productFilter);
+            parameters.Add("@p_ProductFilter", productFilter);
             parameters.Add("@p_TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 

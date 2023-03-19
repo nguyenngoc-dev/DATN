@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.100.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Perfume.Common\Perfume.Common.csproj" />
     <ProjectReference Include="..\Perfume.DLL\Perfume.DAL.csproj" />
   </ItemGroup>

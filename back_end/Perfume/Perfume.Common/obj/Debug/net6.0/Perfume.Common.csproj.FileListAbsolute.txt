@@ -1,0 +1,14 @@
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\bin\Debug\net6.0\Perfume.Common.deps.json
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\bin\Debug\net6.0\Perfume.Common.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\bin\Debug\net6.0\Perfume.Common.pdb
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.csproj.AssemblyReference.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.Resource.Resource.resources
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.csproj.GenerateResource.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.AssemblyInfoInputs.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.AssemblyInfo.cs
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.csproj.CoreCompileInputs.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\refint\Perfume.Common.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\Perfume.Common.pdb
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\obj\Debug\net6.0\ref\Perfume.Common.dll

@@ -1,4 +1,4 @@
-﻿using MISA.AMIS.Common.Attributes;
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace Perfume.Common

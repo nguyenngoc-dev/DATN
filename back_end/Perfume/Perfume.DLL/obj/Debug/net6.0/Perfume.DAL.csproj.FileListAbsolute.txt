@@ -1,0 +1,15 @@
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\bin\Debug\net6.0\Perfume.DAL.deps.json
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\bin\Debug\net6.0\Perfume.DAL.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\bin\Debug\net6.0\Perfume.DAL.pdb
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\bin\Debug\net6.0\Perfume.Common.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\bin\Debug\net6.0\Perfume.Common.pdb
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.csproj.AssemblyReference.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.AssemblyInfoInputs.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.AssemblyInfo.cs
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.csproj.CoreCompileInputs.cache
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.csproj.CopyComplete
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\refint\Perfume.DAL.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\Perfume.DAL.pdb
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.DLL\obj\Debug\net6.0\ref\Perfume.DAL.dll

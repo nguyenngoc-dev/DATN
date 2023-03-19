@@ -12,7 +12,7 @@ namespace Perfume.Common
         /// <summary>
         /// Chuỗi tìm kiếm
         /// </summary>
-        public string? EmployeeFilter { get; set; }
+        public string? ProductFilter { get; set; }
 
         /// <summary>
         /// Số bản ghi một trang

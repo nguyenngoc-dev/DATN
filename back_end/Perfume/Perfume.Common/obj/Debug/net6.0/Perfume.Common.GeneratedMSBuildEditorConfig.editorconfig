@@ -5,6 +5,7 @@ build_property.UsingMicrosoftNETSdkWeb =
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Perfume.Common
 build_property.ProjectDir = D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.Common\

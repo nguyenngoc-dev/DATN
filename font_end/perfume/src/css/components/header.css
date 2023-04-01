@@ -8,7 +8,9 @@
     height: 86px;
     text-align: center;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    padding: 0 32px;
 }
 
 .header-top-left {
@@ -23,10 +25,15 @@
 .header-top-between {
     display: flex;
     align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 0 12px;
+    height: 40px;
 }
 
 .header-top-search {
-
+    outline: none;
+    width: 300px;
 }
 
 .header-top-right {

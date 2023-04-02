@@ -53,13 +53,24 @@ body {
    width: calc(100% - 178px);
 }
 
-
+.fs-20 {
+    font-size: 20px;
+}
+.fs-18 {
+    font-size: 18px;
+}
+.fs-16 {
+    font-size: 16px;
+}
 .required {
     color: var(--error-color);
 }
 .full-w {
     width: 100% !important;
     max-width: 100% !important;
+}
+a{
+    text-decoration: none;
 }
 /* width */
 ::-webkit-scrollbar {

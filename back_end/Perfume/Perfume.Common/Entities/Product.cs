@@ -37,11 +37,6 @@ namespace Perfume.Common
         /// ID danh mục
         /// </summary>
         public Guid CategoryId { get; set; }
-
-        /// <summary>
-        /// Tên danh mục
-        /// </summary>
-        public string? CategoryName { get; set; }
         /// <summary>
         /// Giá sản phẩm
         /// </summary>
@@ -66,6 +61,28 @@ namespace Perfume.Common
         /// Mô tả chi tiết
         /// </summary>
         public string DetailDescription { get; set; }
+
+        /// <summary>
+        /// Giảm giá
+        /// </summary>
+        public int Discount { get; set; }
+
+        /// <summary>
+        /// Trạng thái
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
+        /// Tên danh mục
+        /// </summary>
+        public string CategoryName { get; set; }
+
+        /// <summary>
+        /// Link ảnh
+        /// </summary>
+        public string ImageUrl { get; set; }
+
+        
         #endregion
 
     }

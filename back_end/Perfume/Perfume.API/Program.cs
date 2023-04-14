@@ -32,7 +32,10 @@ builder.Services.AddScoped<ICategoryBL, CategoryBL>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
 builder.Services.AddScoped<IProductImageDAL, ProductImageDAL>();
 builder.Services.AddScoped<IProductImageBL, ProductImageBL>();
-
+builder.Services.AddScoped<ISaleOrderDAL, SaleOrderDAL>();
+builder.Services.AddScoped<ISaleOrderBL, SaleOrderBL>();
+builder.Services.AddScoped<IUserBL, UserBL>();
+builder.Services.AddScoped<IUserDAL, UserDAL>();
 // Gán connection string cho MySQLConnectionString
 DataContext.MySQLConnectionString = builder.Configuration.GetConnectionString("MySqlConnectionString");
 // Validate sử dụng model state

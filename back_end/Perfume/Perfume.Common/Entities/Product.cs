@@ -82,7 +82,11 @@ namespace Perfume.Common
         /// </summary>
         public string ImageUrl { get; set; }
 
-        
+        /// <summary>
+        /// Id ảnh
+        /// </summary>
+        public Guid ProductImageId { get; set; }
+
         #endregion
 
     }

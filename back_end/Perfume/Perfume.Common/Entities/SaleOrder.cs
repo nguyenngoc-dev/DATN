@@ -14,6 +14,10 @@ namespace Perfume.Common
         public Guid SaleOrderId { get; set; }
 
         /// <summary>
+        /// Mã hóa đơn
+        /// </summary>
+        public string SaleOrderCode { get; set; }
+        /// <summary>
         /// Địa chỉ khách hàng
         /// </summary>
         public string CustomerAddress { get; set; }
@@ -28,6 +32,15 @@ namespace Perfume.Common
         /// </summary>
         public Guid UserId { get; set; }
 
+        /// <summary>
+        /// Họ
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Tên
+        /// </summary>
+        public string LastName { get; set; }
         /// <summary>
         /// id vận chuyển
         /// </summary>

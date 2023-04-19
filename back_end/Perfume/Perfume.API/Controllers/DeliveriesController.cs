@@ -1,29 +1,25 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Dapper;
-using MySqlConnector;
-using Perfume.Common;
+﻿using Microsoft.AspNetCore.Mvc;
 using Perfume.BL;
 using Perfume.Common.Resource;
+using Perfume.Common;
 
-namespace Perfume.API
+namespace Perfume.API.Controllers
 {
-
-    public class CategorysController : BasesController<Category>
+    public class DeliveriesController : BasesController<Delivery>
     {
         #region Field
-        private ICategoryBL _categoryBL;
+        private IDeliveryBL _deliveryBL;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Hàm khởi tạo
         /// </summary>
-        /// <param name="_departmentBL">Đối tượng ICategoryBL</param>
-        public CategorysController(ICategoryBL categoryBL) : base(categoryBL)
+        /// <param name="_departmentBL">Đối tượng IDeliveryBL</param>
+        public DeliveriesController(IDeliveryBL deliveryBL) : base(deliveryBL)
         {
-            _categoryBL = categoryBL;
-           
+            _deliveryBL = deliveryBL;
+
         }
         #endregion
         /// <summary>
@@ -32,12 +28,12 @@ namespace Perfume.API
         /// <returns>Mã sản phẩm mới</returns>
         /// author:Nguyễn Văn Ngọc(30/1/2023)
         [HttpGet]
-        [Route("new-category-code")]
-        public IActionResult GetNewCategoryCode()
+        [Route("new-delivery-code")]
+        public IActionResult GetNewDeliveryCode()
         {
             try
             {
-                var result = _categoryBL.GetNewCategoryCode();
+                var result = _deliveryBL.GetNewDeliveryCode();
                 return StatusCode(StatusCodes.Status200OK, result);
 
 

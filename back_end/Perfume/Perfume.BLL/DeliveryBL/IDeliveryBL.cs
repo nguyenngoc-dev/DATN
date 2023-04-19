@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Perfume.DAL
+namespace Perfume.BL
 {
-    public interface ICategoryDAL: IBaseDAL<Category>
+    public interface IDeliveryBL : IBaseBL<Delivery>
     {
         /// <summary>
         /// Lấy mã danh mục mới
         /// </summary>
         /// <returns>Mã sản phẩm mới</returns>
         /// author:Nguyễn Văn Ngọc(30/1/2023)
-        public string GetNewCategoryCode();
+        public string GetNewDeliveryCode();
     }
 }

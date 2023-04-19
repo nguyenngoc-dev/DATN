@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Perfume.Common
 {
-    public class User
+    public class User:Base
     {
         /// <summary>
         /// Khóa chính

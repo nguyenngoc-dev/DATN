@@ -36,6 +36,8 @@ builder.Services.AddScoped<ISaleOrderDAL, SaleOrderDAL>();
 builder.Services.AddScoped<ISaleOrderBL, SaleOrderBL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<IDeliveryBL, DeliveryBL>();
+builder.Services.AddScoped<IDeliveryDAL, DeliveryDAL>();
 // Gán connection string cho MySQLConnectionString
 DataContext.MySQLConnectionString = builder.Configuration.GetConnectionString("MySqlConnectionString");
 // Validate sử dụng model state

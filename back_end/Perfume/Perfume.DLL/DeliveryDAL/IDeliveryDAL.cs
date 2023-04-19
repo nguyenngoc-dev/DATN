@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Perfume.DAL
 {
-    public interface ICategoryDAL: IBaseDAL<Category>
+    public interface IDeliveryDAL : IBaseDAL<Delivery>
     {
         /// <summary>
-        /// Lấy mã danh mục mới
+        /// Lấy mã vận đơn
         /// </summary>
         /// <returns>Mã sản phẩm mới</returns>
         /// author:Nguyễn Văn Ngọc(30/1/2023)
-        public string GetNewCategoryCode();
+        public string GetNewDeliveryCode();
     }
 }

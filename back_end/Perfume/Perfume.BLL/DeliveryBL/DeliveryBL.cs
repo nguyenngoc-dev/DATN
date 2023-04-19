@@ -1,5 +1,4 @@
-﻿
-using Perfume.Common;
+﻿using Perfume.Common;
 using Perfume.DAL;
 using System;
 using System.Collections.Generic;
@@ -9,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Perfume.BL
 {
-    public class CategoryBL : BaseBL<Category>,ICategoryBL
+    public class DeliveryBL : BaseBL<Delivery>, IDeliveryBL
     {
 
         #region Field
         /// <summary>
         /// Interface IProductDAL
         /// </summary>
-        private ICategoryDAL _categoryDAL;
+        private IDeliveryDAL _deliveryDAL;
         #endregion
 
         #region Constructor
@@ -24,9 +23,9 @@ namespace Perfume.BL
         /// Hàm khởi tạo
         /// </summary>
         /// <param name="productDAL"></param>
-        public CategoryBL(ICategoryDAL categoryDAL) : base(categoryDAL)
+        public DeliveryBL(IDeliveryDAL deliveryDAL) : base(deliveryDAL)
         {
-            _categoryDAL = categoryDAL;
+            _deliveryDAL = deliveryDAL;
         }
         #endregion
 
@@ -35,9 +34,9 @@ namespace Perfume.BL
         /// </summary>
         /// <returns>Mã sản phẩm mới</returns>
         /// author:Nguyễn Văn Ngọc(30/1/2023)
-        public string GetNewCategoryCode()
+        public string GetNewDeliveryCode()
         {
-            return _categoryDAL.GetNewCategoryCode();
+            return _deliveryDAL.GetNewDeliveryCode();
         }
     }
 }

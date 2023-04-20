@@ -1,38 +1,27 @@
 <template>
-    <v-card class="mx-auto" max-width="344">
-        <v-img src={{ urlImage }} height="200px" cover></v-img>
+    <div class="card-item-container"> 
+        <router-link to="/cart" class="card-item-container-cart">
+            <i class="fas fa-shopping-basket fs-20 "></i>
+        </router-link>
+        <router-link to="/detail">
+            <div class="card-item-img-container">
+                <img class="card-item-img" :src="urlImage" alt="Lỗi ảnh">
+                <div class="mask"></div>
 
-        <v-card-title>
-           {{ title }}
-        </v-card-title>
-
-        <v-card-subtitle>
-            {{ price }}
-        </v-card-subtitle>
-
-        <v-card-actions>
-            <v-btn color="orange-lighten-2" variant="text">
-                Xem mô tả
-            </v-btn>
-
-            <v-spacer></v-spacer>
-
-            <v-btn class="fas fa-angle-down " :icon="show ? 'mdi-chevron-up' : 'fas fa-angle-down'" @click="show = !show"></v-btn>
-        </v-card-actions>
-
-        <v-expand-transition>
-            <div v-show="show">
-                <v-divider></v-divider>
-
-                <v-card-text>
-                    I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for
-                    sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey,
-                    you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way
-                    to escape.
-                </v-card-text>
             </div>
-        </v-expand-transition>
-    </v-card>
+        </router-link>
+
+        <div class="card-item-bottom flex">
+            <router-link to="/detail">
+                <div class="card-item-title">
+                    {{ title }}
+                </div>
+            </router-link>
+            <div class="card-item-price">
+                {{ price }} vnđ
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 export default {
@@ -40,9 +29,12 @@ export default {
         show: false,
     }),
     props: {
-        urlImage:String,
-        title:String,
-        price:String
+        urlImage: String,
+        title: String,
+        price: String
     }
 }
 </script>
+<style>
+@import "../../assets/font/fontawesome-5.15.1/css/all.min.css";
+</style>

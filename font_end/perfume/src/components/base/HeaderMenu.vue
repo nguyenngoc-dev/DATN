@@ -21,7 +21,7 @@
         </router-link>
     </div>
     <div class="header-menu-right">
-        <router-link  to="/sign-in" class="header-menu-right-signin">
+        <router-link  to="/register" class="header-menu-right-signin">
             <i class="fas fa-user-cog"></i>
             <span> Đăng kí</span>
         </router-link>

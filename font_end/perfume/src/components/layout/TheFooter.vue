@@ -1,6 +1,6 @@
 <template>
-
-    <div>
+  <div class="footer">
+     <div class="footer-group-link">
       <v-btn
         v-for="icon in icons"
         :key="icon"
@@ -12,9 +12,11 @@
 
     <v-divider></v-divider>
 
-    <div>
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+    <div class="footer-shop-name">
+      {{ new Date().getFullYear() }} — <strong>Ngọc Nguyễn Store</strong>
     </div>
+  </div>
+   
 </template>
 <script>
 export default {

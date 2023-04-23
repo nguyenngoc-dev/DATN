@@ -1,58 +1,130 @@
 <template>
-  <div class="header ">
-    <div class="header-top container">
-      <router-link to="/" class="header-top-left">
-        <img class="header-top-left-img" src="../../assets/img/logo1.png" alt="">
-      </router-link >
-      <div class="header-top-between">
-        <input class="header-top-search" placeholder="Tìm kiếm sản phẩm...">
-        <div class="icon-search"></div>
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-      <div class="header-top-right">
-        <div class="header-top-right-first">
-          <div class="header-top-right-first-right">
-            <i class="fas fa-phone fs-20 "></i>
-          </div>
-          <div class="header-top-right-first-left">
-            <div class="header-top-right-first-left-text">
-              Hotline tư vấn
-              <br>
-              <span style="color:var(--primary-color)"><strong>0333168440</strong> </span>
-            </div>
-            <div class="header-top-right-first-left-content">
-
-            </div>
+  <div class="header-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="user-menu">
+            <ul>
+              <li><router-link to="/account">
+                <i class="fas fa-user"></i> Tài Khoản
+              </router-link></li>
+              <li><router-link to="/register">
+                  <i class="fas fa-user-cog"></i> Đăng kí
+                </router-link>
+              </li>
+              <li> <router-link to="/login">
+                  <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                </router-link>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="header-top-right-first">
-          <router-link to="/cart" class="header-top-right-first-right">
-            <i class="fas fa-shopping-basket fs-20 "></i>
-          </router-link>
-          <div class="header-top-right-first-left">
-            <div class="header-top-right-first-left-text">
-              Giỏ hàng
-            </div>
-            <div class="header-top-right-first-left-content">
-              Có <span style="color:var(--primary-color)"><strong>0</strong></span> Sản phẩm
-            </div>
+
+        <div class="col-md-4">
+          <div class="header-right">
+            <ul class="list-unstyled list-inline">
+              <li class="dropdown dropdown-small">
+                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                    class="key">Tiền tệ :</span><span class="value">USD </span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">USD</a></li>
+                  <li><a href="#">INR</a></li>
+                  <li><a href="#">GBP</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown dropdown-small">
+                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                    class="key">Ngôn ngữ :</span><span class="value">English </span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">English</a></li>
+                  <li><a href="#">French</a></li>
+                  <li><a href="#">German</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <HeaderMenu></HeaderMenu>
-   
-  </div>
-</template> 
+  </div> <!-- End header area -->
+  <div class="site-branding-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-6">
+          <div class="logo">
+              <router-link to="/">
+                <img src="../../assets/img/logo1.png" width="100">
+              </router-link>
+          </div>
+        </div>
+        <div class="header-top-between col-sm-4">
+        <input class="header-top-search" placeholder="Tìm kiếm sản phẩm...">
+        <div class="icon-search"></div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+        <div class="col-sm-4 col-6">
+          <div class="shopping-item">
+            <router-link to="/cart">Giỏ hàng - <span class="cart-amunt">{{ TotalPirceCart }} vnđ</span> <i class="fas fa-shopping-cart"></i> <span
+                class="product-count">{{ CartQuantity }}</span></router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- End site branding area -->
+
+  <div class="mainmenu-area">
+    <div class="container">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><router-link class="navbar-nav-link" to="/">Trang chủ</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/man">Nước hoa Nam</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/women">Nước hoa nữ</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/unisex">Nước hoa unisex</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/cart">Giỏ hàng</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/news">Tin tức</router-link></li>
+            <li><router-link class="navbar-nav-link" to="/contact">Liên hệ</router-link></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> <!-- End mainmenu area -->
+</template>
 <script>
-import HeaderMenu from '../base/HeaderMenu.vue';
+import "https://code.jquery.com/jquery.min.js";
+import "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js";
+import "../../js/jquery.sticky.js";
+import "../../js/main.js"
 export default {
-components: {
-  HeaderMenu,
-},
-name:"TheHeader",
+  computed: {
+    CartQuantity() {
+      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      return cartItems.length;
+    },
+    TotalPirceCart() {
+      let totalPrice = 0;
+      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      cartItems.forEach(item => {
+        totalPrice += item.Price;
+      });
+      return totalPrice;
+    }
+  },
+  data() {
+    return {
+      cartItems: JSON.parse(sessionStorage.getItem('cartItems')) || [],
+    }
+  },
+  
 }
 </script>
-<style scoped>
-@import "../../assets/font/fontawesome-5.15.1/css/all.min.css";
-</style>
+<style >@import "../../assets/font/fontawesome-5.15.1/css/all.min.css";</style>

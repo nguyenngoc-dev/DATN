@@ -29,12 +29,13 @@
     border-radius: 20px;
     padding: 0 12px;
     height: 40px;
-    margin-left: 180px;
+    margin-top: 26px;
 }
 
 .header-top-search {
     outline: none;
-    width: 500px;
+    width: 330px;
+    border: none;
 }
 
 .header-top-right {

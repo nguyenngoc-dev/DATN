@@ -9,6 +9,8 @@ import RegisterPage from "../views/RegisterPage.vue"
 import NewsPage from "../views/NewsPage.vue"
 import ContactPage from "../views/ContactPage.vue"
 import DetailItem from "../views/DetailItem.vue"
+import AccountPage from "../views/AccountPage.vue"
+import OrderPurchase from "../views/OrderPurchase.vue"
 
 
 const routes = [
@@ -19,9 +21,11 @@ const routes = [
   { path: "/unisex", component: UnisexPage },
   { path: "/login", component: LoginPage },
   { path: "/register", component: RegisterPage },
+  { path: "/order-purchase", component: OrderPurchase },
   { path: "/news", component: NewsPage },
+  { path: "/account", component: AccountPage },
   { path: "/contact", component: ContactPage },
-  { path: "/detail", component: DetailItem },
+  { path: "/detail/:id", component: DetailItem },
 ];
 
 const router = createRouter({

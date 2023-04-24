@@ -5,14 +5,14 @@
         <div class="col-md-8">
           <div class="user-menu">
             <ul>
-              <li><router-link to="/account">
+              <li v-if ="this.$route.username"><router-link to="/account">
                 <i class="fas fa-user"></i> Tài Khoản
               </router-link></li>
-              <li><router-link to="/register">
+              <li v-if ="!this.$route.username"><router-link to="/register">
                   <i class="fas fa-user-cog"></i> Đăng kí
                 </router-link>
               </li>
-              <li> <router-link to="/login">
+              <li v-if ="!this.$route.username"> <router-link to="/login">
                   <i class="fas fa-sign-in-alt"></i> Đăng nhập
                 </router-link>
               </li>

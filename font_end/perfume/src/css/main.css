@@ -8,6 +8,7 @@
 @import url("./components/owl.carousel.css");
 @import url("./components/responsive.css");
 @import url("./components/toast.css");
+@import url("./components/loading.css");
 * {
   margin: 0;
   padding: 0;
@@ -566,13 +567,13 @@ body {
   margin-right: 5px;
   text-decoration: none;
 }
-.product-hover a i.fa {
+.product-hover  i.fa {
   margin-right: 5px;
 }
-.product-hover a.add-to-cart-link {
+.product-hover .add-to-cart-link {
   top: -25%;
 }
-.product-hover a.view-details-link {
+.product-hover .view-details-link {
   bottom: -25%;
 }
 .single-product h2 {
@@ -595,10 +596,10 @@ body {
 }
 .single-product:hover {
 }
-.single-product:hover .product-hover a.add-to-cart-link {
+.single-product:hover .product-hover .add-to-cart-link {
   top: 32%;
 }
-.single-product:hover .product-hover a.view-details-link {
+.single-product:hover .product-hover .view-details-link {
   bottom: 32%;
 }
 .single-product:hover .product-hover:after {

@@ -16,6 +16,7 @@ import OrderPurchase from "../views/OrderPurchase.vue"
 const routes = [
   { path: "/man", component: ManPerfume },
   { path: "/", component: HomePage },
+  { path: "/:username", component: HomePage },
   { path: "/cart", component: CartPage },
   { path: "/women", component: WomenPage },
   { path: "/unisex", component: UnisexPage },

@@ -4,53 +4,36 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          
           <div class="latest-product">
             <h2 class="section-title">Sản phẩm mới nhất</h2>
             <div class="product-carousel">
-              <div class="single-product">
-                <div class="product-f-image">
-                  <img src="../assets/img/anh1.jpg" alt="">
+              <div class="container"> 
+            <div class="row">
+              <div class="single-product single-shop-product col-md-3 col-sm-6" v-for="(product, index) in products" :key="index">
+                <div class="product-f-image product-upper">
+                  <router-link :to="'/detail/' + product.ProductId">
+                                <img :src="product.ImageUrl" alt="Lỗi ảnh">
+                            </router-link>
                   <div class="product-hover">
-                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                    <a href="#" class="add-to-cart-link" @click="onAddCartItem(product)">
+                      <i class="fas fa-shopping-cart"></i> Thêm vào giỏ</a>
+                        <router-link  class="view-details-link" :to="'/detail/' + product.ProductId">
+                              Xem chi tiết
+                        </router-link>
                   </div>
                 </div>
 
-                <h2><a href="single-product.html">Samsung Galaxy s5- 2015</a></h2>
+                <h2> <router-link :to="'/detail/' + product.ProductId">
+                                {{ product.ProductName }}
+                            </router-link></h2>
 
                 <div class="product-carousel-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
+                  <ins>{{ product.Price }} vnđ</ins> <del>{{ product.Price }} vnđ</del>
                 </div>
               </div>
-              <div class="single-product">
-                <div class="product-f-image">
-                  <img src="../assets/img/anh2.jpg" alt="">
-                  <div class="product-hover">
-                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                  </div>
-                </div>
-
-                <h2>Nokia Lumia 1320</h2>
-                <div class="product-carousel-price">
-                  <ins>$899.00</ins> <del>$999.00</del>
-                </div>
-              </div>
-              <div class="single-product">
-                <div class="product-f-image">
-                  <img src="../assets/img/anh3.jpg" alt="">
-                  <div class="product-hover">
-                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                  </div>
-                </div>
-
-                <h2>LG Leon 2015</h2>
-
-                <div class="product-carousel-price">
-                  <ins>$400.00</ins> <del>$425.00</del>
-                </div>
-              </div>
+             </div>
+             </div>
             </div>
           </div>
         </div>
@@ -239,7 +222,14 @@
     :next-text="'Sau'" :prev-class="'prev-btn'" :next-class="'next-btn'" :container-class="'pagination'"
     :page-class="'page-item'" :v-show="this.totalPage">
   </paginate>
-  <BaseLoading v-if="false" />
+  <BaseLoading v-if="isShowLoading" />
+  <BaseToast v-if="isShowToast" 
+        @closeToast="onhideToast" 
+        @onhideToast="onhideToast" 
+        :toastType="toastContent"
+        :toastTitle="toastTitle" 
+        :isSuccessToast="isSuccessToast" 
+        :isErrorToast="isErrorToast" />
 </template>
 <script>
 import "https://code.jquery.com/jquery.min.js";
@@ -281,8 +271,8 @@ export default {
       showListPage: false, // show ra list page size
       currentPageNum: 1, // Trang hiện tại
       itemActive: 0, // set class active cho list item selected
-      //toastContent: RESOURCES.FORM_MODE.DELETE, // nội dung toast message
-      //toastTitle: RESOURCES.NOTIFICATION_TITLE.SUCCESS, // Tiêu đề toast,
+      toastContent: "ADD", // nội dung toast message
+      toastTitle: "", // Tiêu đề toast,
       isErrorToast: false, // Icon toast lỗi
       isSuccessToast: true, // icon toast thành công
       pageTotal: 0, // tổng số bản ghi
@@ -353,6 +343,30 @@ export default {
         PageNumber: PageNumber,
       };
     },
+    onAddCartItem(product) {
+            // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+            let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+
+            // Thêm sản phẩm vào giỏ hàng
+            cartItems.push(product);
+            // Lưu lại danh sách sản phẩm vào sessionStorage
+            sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.isShowToast = true;
+        },
+        /**
+     * author:Nguyễn Văn Ngọc(3/1/2023)
+     * Hàm onshowToast  hiện Toast thông báo
+     */
+        onshowToast() {
+            this.isShowToast = true;
+        },
+        /**
+         * author:Nguyễn Văn Ngọc(3/1/2023)
+         * Hàm onhideToast ẩn  Toast thông báo
+         */
+        onhideToast() {
+            this.isShowToast = false;
+        },
   }
 
 }

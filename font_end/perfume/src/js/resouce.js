@@ -16,6 +16,8 @@ const RESOURCES = {
       ADD: "Thêm vào giỏ thành công!",
       EDIT: "Sửa thành công!",
       DELETE: "Xóa khỏi giỏ thành công",
+      AUTHEN:"Đăng nhập thành công",
+      SREGIS:"Đăng kí tài khoản thành công"
     },
     ERROR: {
       ERRORSERVER:"Vui lòng liên hệ Store để được trợ giúp",
@@ -26,7 +28,11 @@ const RESOURCES = {
       ERROR_DEPARTMENT:"Đơn vị không hợp lệ",
       ERROR_EMAIL:"Email không đúng định dạng",
       ERROR_PHONENUMBER:"Số điện thoại không đúng định dạng",
-      ERROR_BANK_ACCOUNT:"Số tài khoản không đúng định dạng"
+      ERROR_BANK_ACCOUNT:"Số tài khoản không đúng định dạng",
+      AUTHEN:"Tài khoản hoặc mật khẩu không chính xác",
+      DUP_AUTHEN:"Tài khoản và mật khẩu đã tồn tại",
+      MATCH:"Mật khẩu không khớp",
+      EMPTY:"Bạn cần nhập đủ trường"
     }
   },
   DepartmentId:'DepartmentId',
@@ -35,7 +41,12 @@ const RESOURCES = {
     EDIT: "EDIT",
     DUPLICATE: "DUPLICATE",
     DELETE: "DELETE",
-    ERROR:"ERROR"
+    ERROR:"ERROR",
+    SUCCESS:"SUCCESS",
+    AUTHEN:"AUTHEN",
+    MATCH:"MATCH",
+    SREGIS:"SREGIS",
+    EMPTY:"EMPTY"
   },
   FORM_TITLE: {
     PRODUCT:{

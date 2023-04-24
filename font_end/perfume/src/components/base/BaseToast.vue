@@ -66,7 +66,23 @@ export default {
 				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.DELETE
 				break;
 			case RESOURCES.FORM_MODE.ERROR:
-				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.ERRORSERVER
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.AUTHEN
+				break;
+			case RESOURCES.FORM_MODE.AUTHEN:
+				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.AUTHEN
+				break;
+			case RESOURCES.FORM_MODE.SREGIS:
+				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.SREGIS
+				break;
+			case RESOURCES.FORM_MODE.DUPLICATE:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.DUP_AUTHEN
+				break;
+			case RESOURCES.FORM_MODE.MATCH:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.MATCH
+				break;
+			case RESOURCES.FORM_MODE.EMPTY:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.EMPTY
+				break;
 		}
 		
 	}

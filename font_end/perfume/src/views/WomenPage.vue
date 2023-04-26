@@ -67,14 +67,7 @@
         :isErrorToast="isErrorToast" />
 </template>
 <script>
-import "https://code.jquery.com/jquery.min.js";
-import "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js";
-import "../js/owl.carousel.min.js";
-import "../js/jquery.sticky.js";
-import "../js/jquery.easing.1.3.min.js";
-import "../js/main.js";
-import "../js/bxslider.min.js";
-import "../js/script.slider.js";
+
 import { Carousel, Slide } from 'vue-carousel';
 import { HTTP } from "../js/api.js"
 import CardItem from "../components/base/CardItem.vue";
@@ -128,8 +121,12 @@ export default {
                 // show loading
                 this.isShowLoading = true;
                 HTTP.post(`/filter`, this.getFilterParams("", 20, 1)).then((res) => {
-                    this.products = res.data.Data.filter(product => {
+                    let productList = res.data.Data.filter(product => {
                         return product.IsActive == true
+                    });
+                    this.products = productList.filter(product=>{
+                        console.log(product.CategoryId)
+                        return product.CategoryId == "3623a44e-bfc3-4457-8416-91e5bb3ae14c"
                     });
                     this.totalPage = res.data.TotalPage;
                     this.isShowLoading = false;

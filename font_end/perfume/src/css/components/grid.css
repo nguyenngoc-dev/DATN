@@ -16,7 +16,12 @@
     margin-right: auto;
     margin-left: auto;
 }
-
+.container {
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .grid.wide {
     max-width: 1200px;
     margin: 0 auto;

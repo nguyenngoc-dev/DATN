@@ -32,7 +32,8 @@ const RESOURCES = {
       AUTHEN:"Tài khoản hoặc mật khẩu không chính xác",
       DUP_AUTHEN:"Tài khoản và mật khẩu đã tồn tại",
       MATCH:"Mật khẩu không khớp",
-      EMPTY:"Bạn cần nhập đủ trường"
+      EMPTY:"Bạn cần nhập đủ trường",
+      OVERFLOW:"Số lượng sản phẩm còn lại không đáp ứng."
     }
   },
   DepartmentId:'DepartmentId',
@@ -46,7 +47,8 @@ const RESOURCES = {
     AUTHEN:"AUTHEN",
     MATCH:"MATCH",
     SREGIS:"SREGIS",
-    EMPTY:"EMPTY"
+    EMPTY:"EMPTY",
+    OVERFLOW:"OVERFLOW"
   },
   FORM_TITLE: {
     PRODUCT:{

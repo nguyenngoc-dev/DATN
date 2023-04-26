@@ -83,6 +83,9 @@ export default {
 			case RESOURCES.FORM_MODE.EMPTY:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.EMPTY
 				break;
+			case RESOURCES.FORM_MODE.OVERFLOW:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.OVERFLOW
+				break;
 		}
 		
 	}

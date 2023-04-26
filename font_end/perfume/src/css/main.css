@@ -9,6 +9,7 @@
 @import url("./components/responsive.css");
 @import url("./components/toast.css");
 @import url("./components/loading.css");
+@import url("./components/grid.css");
 * {
   margin: 0;
   padding: 0;

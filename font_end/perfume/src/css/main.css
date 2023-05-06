@@ -1347,10 +1347,11 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
   margin-top: 15px;
 }
 .single-shop-product .product-upper {
-  min-height: 262px;
+ height: 69%;
 }
 .single-shop-product {
   margin-bottom: 50px;
+  height: 100%;
 }
 
 .pagination > li > a,

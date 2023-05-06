@@ -25,7 +25,7 @@
                                 <div class="product-inner">
                                     <h2 class="product-name">{{ products.ProductName }}</h2>
                                     <div class="product-inner-price">
-                                        <ins>{{ products.Price }}</ins> <del>{{ products.Price }}</del>
+                                        <ins>{{ products.Price - products.Price * products.Discount / 100 }} vnđ</ins> <del>{{ products.Price }} vnđ</del>
                                     </div>
                                     <div class="product-inner-price">
                                         Số lượng còn: {{ products.Quantity  }}

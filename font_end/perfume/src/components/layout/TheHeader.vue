@@ -5,17 +5,20 @@
         <div class="col-md-8">
           <div class="user-menu">
             <ul>
-              <li v-if ="this.$route.username"><router-link to="/account">
+              <li  v-if ="isShowRegister"><router-link to="/account">
                 <i class="fas fa-user"></i> Tài Khoản
               </router-link></li>
-              <li v-if ="!this.$route.username"><router-link to="/register">
+              <li v-if ="isShowRegister"><router-link to="/register">
                   <i class="fas fa-user-cog"></i> Đăng kí
                 </router-link>
               </li>
-              <li v-if ="!this.$route.username"> <router-link to="/login">
+              <li v-if ="isShowRegister"> <router-link to="/login">
                   <i class="fas fa-sign-in-alt"></i> Đăng nhập
                 </router-link>
               </li>
+              <li @click="onLogout" v-if ="isShowRegister" style="cursor: pointer; color: rgb(138, 141, 143);">
+                  <i class="fas fa-sign-in-alt"></i> Đăng xuất
+              </li> 
             </ul>
           </div>
         </div>
@@ -59,7 +62,7 @@
           </div>
         </div>
         <div class="header-top-between col-sm-4">
-        <input class="header-top-search" placeholder="Tìm kiếm sản phẩm...">
+        <input class="header-top-search" placeholder="Tìm kiếm sản phẩm..." v-model="textSearch" @keyup.enter="onSearch">
         <div class="icon-search"></div>
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
@@ -122,9 +125,52 @@ export default {
   data() {
     return {
       cartItems: JSON.parse(sessionStorage.getItem('cartItems')) || [],
+      textSearch:'',
+      isShowLogout: false,
+      isShowRegister:true
     }
   },
+  methods: {
+    onSearch() {
+      
+    },
+    onLogout() {
+
+      // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+      let account = JSON.parse(sessionStorage.getItem('account')) || [];
+      // Thêm sản phẩm vào giỏ hàng
+      if(account.length) {
+        sessionStorage.removeItem('account');
+      }
+      let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      if(cartItems.length) {
+        sessionStorage.removeItem('cartItems');
+      }
+      this.showRegister();
+      this.showLogout();
+      this.$router.push('/login');
+      
+    },
+    showRegister() {
+      let account = JSON.parse(sessionStorage.getItem('account')) || [];
+      if(!account.length) {
+        this.isShowRegister = true;
+      }
+      else {
+        this.isShowRegister = false;
+      }
+    },
+    showLogout() {
+      let account = JSON.parse(sessionStorage.getItem('account')) || [];
+      if(account.length) {
+        this.isShowLogout = true
+      }
+      else {
+        this.isShowLogout = false
+      }
+  },
   
-}
+  
+}}
 </script>
 <style >@import "../../assets/font/fontawesome-5.15.1/css/all.min.css";</style>

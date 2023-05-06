@@ -103,6 +103,12 @@ export default {
             this.toastContent ="SREGIS"
             this.isErrorToast = false;
             this.isShowToast = true;
+            // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+              let account = JSON.parse(sessionStorage.getItem('account')) || [];
+              // Thêm sản phẩm vào giỏ hàng
+              account.push(this.username);
+              // Lưu lại danh sách sản phẩm vào sessionStorage
+              sessionStorage.setItem('account', JSON.stringify(account));
             setTimeout(() => {
                 this.$router.push('/');
             }, 1500);

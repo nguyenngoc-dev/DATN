@@ -10,7 +10,7 @@
             <div class="product-carousel">
               <div class="container"> 
             <div class="row">
-              <div class="single-product single-shop-product col-md-3 col-sm-6" v-for="(product, index) in products" :key="index">
+              <div class="single-product single-shop-product homepage col-md-3 col-sm-6" v-for="(product, index) in products" :key="index">
                 <div class="product-f-image product-upper">
                   <router-link :to="'/detail/' + product.ProductId">
                                 <img :src="product.ImageUrl" alt="Lỗi ảnh">
@@ -289,5 +289,11 @@ export default {
 
 .next-btn.disabled {
   margin-left: 4px;
+}
+.product-f-image.product-upper {
+  height: 89%;
+}
+.single-shop-product.homepage {
+  height: auto;
 }
 </style>

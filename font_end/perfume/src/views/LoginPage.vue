@@ -12,7 +12,7 @@
 
     <!-- Login Form -->
     <div>
-      <input type="text" v-model="username" id="login" class="fadeIn second" name="login" placeholder="Email">
+      <input type="text" v-model="username" id="login" class="fadeIn second" name="login" placeholder="UserName">
       <input type="password" v-model="password" id="password"  class="fadeIn third" name="login" placeholder="Password">
       <input type="submit" @click="onLogin()" class="fadeIn fourth" value="Đăng nhập">
     </div>
@@ -64,6 +64,12 @@ export default {
           this.toastContent =  "AUTHEN"
           this.isErrorToast = false;
             this.isShowToast = true;
+              // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+              let account = JSON.parse(sessionStorage.getItem('account')) || [];
+              // Thêm sản phẩm vào giỏ hàng
+              account.push(item.UserId);
+              // Lưu lại danh sách sản phẩm vào sessionStorage
+              sessionStorage.setItem('account', JSON.stringify(account));
             if(item.Role == "Admin") {
               setTimeout(() => {
                 window.open("http://localhost:8080/");

@@ -109,7 +109,7 @@
         
         </div> 
         </section>
-
+        <BaseLoading v-if="isShowLoading" />
         <BaseToast v-if="isShowToast" 
         @closeToast="onhideToast" 
         @onhideToast="onhideToast" 
@@ -117,7 +117,6 @@
         :toastTitle="toastTitle" 
         :isSuccessToast="isSuccessToast" 
         :isErrorToast="isErrorToast" />
-
 </template>
 <script>
 

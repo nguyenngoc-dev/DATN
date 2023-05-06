@@ -20,7 +20,7 @@
                 <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form id="login-form-wrap" class="login collapse" method="post">
+                            <div id="login-form-wrap" class="login collapse" method="post">
                                 <p class="form-row form-row-first">
                                     <label for="username">Username or email <span class="required">*</span>
                                     </label>
@@ -44,55 +44,48 @@
                                 </p>
 
                                 <div class="clear"></div>
-                            </form>
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                            </div>
+                            <div enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
                                 <div id="customer_details" style="align-items: center;" class="col2-set flex">
                                     <div style="flex: 45%; margin-right: 24px;">
                                         <div class="woocommerce-billing-fields">
                                             <h3>Thông tin chi tiết</h3>
-
-
-                                            <p id="billing_first_name_field"
-                                                class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">Tên <abbr title="required"
+                                            <p id="billing_city_field"
+                                                class="form-row form-row-wide address-field validate-required"
+                                                data-o_class="form-row form-row-wide address-field validate-required">
+                                                <label class="" for="billing_city">Mã đơn hàng<abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name"
-                                                    name="billing_first_name" class="input-text ">
+                                                <input type="text" v-model="saleOrder.SaleOrderCode" id="billing_city"
+                                                    name="billing_city" class="input-text ">
+                                            </p>
+                                            <p id="billing_first_name_field"
+                                                class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">Họ <abbr title="required"
+                                                        class="required">*</abbr>
+                                                </label>
+                                                <input v-model="saleOrder.FirstName" type="text" placeholder=""
+                                                    id="billing_first_name" name="billing_first_name" class="input-text ">
                                             </p>
 
                                             <p id="billing_last_name_field"
                                                 class="form-row form-row-last validate-required">
-                                                <label class="" for="billing_last_name">Họ <abbr title="required"
+                                                <label class="" for="billing_last_name">Tên <abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_last_name"
-                                                    name="billing_last_name" class="input-text ">
+                                                <input v-model="saleOrder.LastName" type="text" placeholder=""
+                                                    id="billing_last_name" name="billing_last_name" class="input-text ">
                                             </p>
                                             <div class="clear"></div>
-
-
-
                                             <p id="billing_address_1_field"
                                                 class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address_1">Địa chỉ <abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Address" id="billing_address_1"
-                                                    name="billing_address_1" class="input-text ">
+                                                <input type="text" v-model="saleOrder.CustomerAddress" placeholder="Address"
+                                                    id="billing_address_1" name="billing_address_1" class="input-text ">
                                             </p>
-
-                                            <p id="billing_city_field"
-                                                class="form-row form-row-wide address-field validate-required"
-                                                data-o_class="form-row form-row-wide address-field validate-required">
-                                                <label class="" for="billing_city">Số nhà<abbr title="required"
-                                                        class="required">*</abbr>
-                                                </label>
-                                                <input type="text" value="" placeholder="15" id="billing_city"
-                                                    name="billing_city" class="input-text ">
-                                            </p>
-
                                             <div class="clear"></div>
 
                                             <p id="billing_email_field"
@@ -100,8 +93,8 @@
                                                 <label class="" for="billing_email">Email<abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="nguyen@gmail.com"
-                                                    id="billing_email" name="billing_email" class="input-text ">
+                                                <input type="text" placeholder="nguyen@gmail.com" id="billing_email"
+                                                    name="billing_email" class="input-text ">
                                             </p>
 
                                             <p id="billing_phone_field"
@@ -109,31 +102,19 @@
                                                 <label class="" for="billing_phone">Số điện thoại <abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_phone"
-                                                    name="billing_phone" class="input-text ">
+                                                <input v-model="saleOrder.CustomerPhone" type="text" placeholder="" id="billing_phone" name="billing_phone"
+                                                    class="input-text ">
                                             </p>
                                             <div class="clear"></div>
-
-
-                                            <div class="create-account">
-                                                <p id="account_password_field" class="form-row validate-required">
-                                                    <label class="" for="account_password">Mật khẩu của bạn <abbr
-                                                            title="required" class="required">*</abbr>
-                                                    </label>
-                                                    <input type="password" value="" placeholder="Password"
-                                                        id="account_password" name="account_password" class="input-text">
-                                                </p>
-                                                <div class="clear"></div>
-                                            </div>
 
                                         </div>
                                     </div>
 
                                     <div style="flex: 45%;">
-                                        <h3 id="order_review_heading" style="margin-top: -128px;">Hóa đơn</h3>
+                                        <h3 id="order_review_heading" style="margin-top: 26px;margin-bottom: 13px;">Hóa đơn</h3>
                                         <div id="order_review" style="position: relative;">
-                                    </div>
-                                    
+                                        </div>
+
                                         <table class="shop_table">
                                             <thead>
                                                 <tr>
@@ -151,29 +132,22 @@
                                                 </tr>
                                             </tbody>
                                             <tfoot>
-
-                                                
-
                                                 <tr class="shipping">
                                                     <th>Phí vận chuyển</th>
                                                     <td>
-
                                                         0
                                                         <input type="hidden" class="shipping_method" value="free_shipping"
                                                             id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                                     </td>
                                                 </tr>
-
-
                                                 <tr class="order-total">
                                                     <th>Thanh toán</th>
-                                                    <td><strong><span class="amount">{{ TotalPirceCart }} vnđ</span></strong> </td>
+                                                    <td><strong><span class="amount">{{ TotalPirceCart }}
+                                                                vnđ</span></strong> </td>
                                                 </tr>
 
                                             </tfoot>
                                         </table>
-
-
                                         <div id="payment">
                                             <ul class="payment_methods methods">
                                                 <li class="payment_method_bacs flex">
@@ -186,7 +160,7 @@
                                                     </div> -->
                                                 </li>
                                                 <li class="payment_method_cheque flex">
-                                                    <input  type="radio" data-order_button_text="" value="cheque"
+                                                    <input type="radio" data-order_button_text="" value="cheque"
                                                         name="payment_method" class="input-radio mr-16"
                                                         id="payment_method_cheque">
                                                     <label for="payment_method_cheque">Quét mã Qr code </label>
@@ -207,35 +181,37 @@
                                                             is PayPal?</a>
                                                     </label>
                                                     <div style="display:none;" class="payment_box payment_method_paypal">
-                                                        
+
                                                     </div>
                                                 </li>
-                                        </ul>
+                                            </ul>
+                                            <div class="form-row place-order">
 
-                                        <div class="form-row place-order">
+                                                <input type="submit" @click="onPerchase()" data-value="Place order" value="Thanh toán"
+                                                    id="place_order" name="woocommerce_checkout_place_order"
+                                                    class="button alt">
+                                            </div>
 
-                                            <input type="submit" data-value="Place order" value="Thanh toán"
-                                                id="place_order" name="woocommerce_checkout_place_order"
-                                                class="button alt">
-
-
+                                            <div class="clear"></div>
                                         </div>
-
-                                        <div class="clear"></div>
-
                                     </div>
                                 </div>
                             </div>
-
-
-                        </form>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div></template>
+    <BaseLoading v-if="isShowLoading" />
+    <BaseToast v-if="isShowToast" 
+        @closeToast="onhideToast" 
+        @onhideToast="onhideToast" 
+        :toastType="toastContent"
+        :toastTitle="toastTitle" 
+        :isSuccessToast="isSuccessToast" 
+        :isErrorToast="isErrorToast" />
+</template>
 <script>
 import "https://code.jquery.com/jquery.min.js";
 import "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js";
@@ -246,26 +222,174 @@ import "../js/main.js";
 import "../js/bxslider.min.js";
 import "../js/script.slider.js";
 import { Carousel, Slide } from 'vue-carousel';
-import { HTTP } from "../js/api.js"
+import { HTTP, HTTPOrders,HTTPDelivery } from "../js/api.js"
+import { Suspense } from "vue";
+
 export default {
-    computed: {
-    CartQuantity() {
-      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
-      return cartItems.length;
+    async created() {
+        await this.getNewEmCode();
+        this.getCartItems();
     },
-    TotalPirceCart() {
-      let totalPrice = 0;
-      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
-      cartItems.forEach(item => {
-        totalPrice += item.Price;
-      });
-      return totalPrice;
+    computed: {
+        CartQuantity() {
+            let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+            return cartItems.length;
+        },
+        TotalPirceCart() {
+            let totalPrice = 0;
+            let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+            cartItems.forEach(item => {
+                totalPrice += item.Price;
+            });
+            return totalPrice;
+        }
+    },
+    data() {
+        return {
+            saleOrder: {
+                SaleOrderId: this.getNewId(),
+                SaleOrderCode: "",
+                CustomerAddress: "",
+                CustomerPhone: "",
+                UserId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                FirstName: "",
+                LastName: "",
+                DeliveryId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                status: 0,
+                TotalPrice: 0
+            },
+            delivery: {},
+            user: JSON.parse(sessionStorage.getItem('account')) || [],
+            isShowToast:false,
+            toastContent: "AUTHEN", // nội dung toast message
+            toastTitle: "", // Tiêu đề toast,
+            isErrorToast: false, // Icon toast lỗi
+            isSuccessToast: true, // icon toast thành công
+            cartResult:[],
+            isShowLoading:false,
+        }
+    },
+    methods: {
+        getNewId() {
+            const myGuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0;
+                const v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        },
+        async getNewEmCode() {
+            const response = await HTTPOrders.get(`/new-sale-order-code`);
+            this.saleOrder.SaleOrderCode = response.data;
+            //this.newEmployeeCode = response.data;
+        },
+        async onPerchase() {
+            if(!this.validate()) {
+                this.toastContent ="EMPTY"
+                this.isErrorToast = true;
+                this.isShowToast = true;
+                return;
+            } 
+            else {
+                this.isShowLoading = true;
+                this.saleOrder.DeliveryId = await this.getNewDeliveryId();
+                this.saleOrder.UserId = this.getUserId();
+                this.saleOrder.TotalPrice = this.TotalPirceCart;
+                try{
+                    const res = await HTTPOrders.post('',this.saleOrder);
+                    this.isShowLoading = false;
+                    this.toastContent =  "ORDERSUCCESS"
+                    this.isErrorToast = false;
+                    this.isShowToast = true;
+                    // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+                    let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+                    // Lưu lại danh sách sản phẩm vào sessionStorage
+                    if(cartItems.length) {
+                        sessionStorage.removeItem('cartItems')
+                    }
+                }
+                catch(ex) {
+                    console.log(ex)
+                }
+            }
+
+        },
+       async getNewDeliveryId() {
+            const response = await HTTPDelivery.get(`/new-delivery-code`);
+            let deliveryCode = response.data;
+            let delivery = {
+                DeliveryId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                DeliveryCode: deliveryCode,
+                DeliveryName: "Nguyễn Văn Ngọc",
+                Status: 0
+            }
+            let res = await HTTPDelivery.post(``, delivery);
+            return res.data;
+            
+        },
+        getUserId() {
+             // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
+             let account = JSON.parse(sessionStorage.getItem('account')) || [];
+              // Lưu lại danh sách sản phẩm vào sessionStorage
+              if(account.length) {
+                return account[0];
+              }
+        },
+         /**
+         * author:Nguyễn Văn Ngọc(3/1/2023)
+         * Hàm onshowToast  hiện Toast thông báo
+         */
+        onshowToast() {
+            this.isShowToast = true;
+        },
+        /**
+         * author:Nguyễn Văn Ngọc(3/1/2023)
+         * Hàm onhideToast ẩn  Toast thông báo
+         */
+        onhideToast() {
+            this.isShowToast = false;
+        },
+           ///custom lại mảng giỏ hàng
+        getCartItems() {
+            let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+            const counts = {};
+            const unique = [];
+            for (let item of cartItems) {
+            if (!counts[item.ProductId]) {
+                counts[item.ProductId] = 1;
+                unique.push(item);
+            } else {
+                counts[item.ProductId]++;
+            }
+            }
+
+            const result = unique.map((item) => ({
+            value: item,
+            count: counts[item.ProductId],
+            }));
+            this.cartResult =  result;
+        }, 
+        validate() {
+            let success = true;
+            if(this.saleOrder.SaleOrderCode == ""|| this.saleOrder.FirstName == "" || this.saleOrder.LastName ==""
+            || this.saleOrder.CustomerAddress== "" || this.saleOrder.CustomerPhone == "") {
+                success = false;
+            }
+            console.log(this.saleOrder)
+            return success;
+        }
+
     }
-  },
 }
 </script>
 <style scoped>
 .mr-16 {
     margin-right: 16px;
+}
+#customer_details input[type="text"]:focus-visible {
+    border: 1px solid green;
+    outline: none;
+}
+input[type="submit"]:hover, button[type="submit"]:hover {
+    background-color: var(--focus-color);
 }
 </style>

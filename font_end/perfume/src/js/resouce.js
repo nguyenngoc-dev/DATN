@@ -17,7 +17,9 @@ const RESOURCES = {
       EDIT: "Sửa thành công!",
       DELETE: "Xóa khỏi giỏ thành công",
       AUTHEN:"Đăng nhập thành công",
-      SREGIS:"Đăng kí tài khoản thành công"
+      SREGIS:"Đăng kí tài khoản thành công",
+      UPDATEAUTH:"Cập nhật tài khoản thành công",
+      ORDERSUCCESS:"Đặt hàng thành công"
     },
     ERROR: {
       ERRORSERVER:"Vui lòng liên hệ Store để được trợ giúp",
@@ -47,8 +49,10 @@ const RESOURCES = {
     AUTHEN:"AUTHEN",
     MATCH:"MATCH",
     SREGIS:"SREGIS",
+    UPDATEAUTH:"UPDATEAUTH",
     EMPTY:"EMPTY",
-    OVERFLOW:"OVERFLOW"
+    OVERFLOW:"OVERFLOW",
+    ORDERSUCCESS:"ORDERSUCCESS"
   },
   FORM_TITLE: {
     PRODUCT:{

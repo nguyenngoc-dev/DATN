@@ -30,7 +30,7 @@
 
                         </h2>
                         <div class="product-carousel-price">
-                            <ins>{{ product.Price }} vnđ</ins> <del>{{ product.Price }} vnđ</del>
+                            <ins>{{ product.Price - product.Price * product.Discount / 100 }} vnđ</ins> <del>{{ product.Price }} vnđ</del>
                         </div>
 
                         <div class="product-option-shop">
@@ -58,6 +58,7 @@
             </div>
         </div>
     </div>
+    <BaseLoading v-if="isShowLoading" />
     <BaseToast v-if="isShowToast" 
         @closeToast="onhideToast" 
         @onhideToast="onhideToast" 

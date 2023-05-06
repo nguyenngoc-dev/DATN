@@ -6,6 +6,8 @@
         /// <summary>
         /// Khóa chính
         /// </summary>
+      
+        [PrimaryKey]
         public Guid CategoryId { get; set; }
 
         /// <summary>

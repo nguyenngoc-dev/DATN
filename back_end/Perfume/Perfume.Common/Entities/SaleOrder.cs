@@ -11,6 +11,7 @@ namespace Perfume.Common
         /// <summary>
         /// Id hóa đơn
         /// </summary>
+        [PrimaryKey]
         public Guid SaleOrderId { get; set; }
 
         /// <summary>

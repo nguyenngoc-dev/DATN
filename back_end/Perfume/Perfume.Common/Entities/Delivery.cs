@@ -11,6 +11,8 @@ namespace Perfume.Common
         /// <summary>
         /// Khóa chính
         /// </summary>
+       
+        [PrimaryKey]
         public Guid DeliveryId { get; set; }
 
         /// <summary>

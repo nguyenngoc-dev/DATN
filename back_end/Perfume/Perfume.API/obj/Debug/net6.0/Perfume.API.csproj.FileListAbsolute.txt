@@ -45,3 +45,8 @@ D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\obj\Debug\net6.0\refint\Perfu
 D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\obj\Debug\net6.0\Perfume.API.pdb
 D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\obj\Debug\net6.0\Perfume.API.genruntimeconfig.cache
 D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\obj\Debug\net6.0\ref\Perfume.API.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\bin\Debug\net6.0\CloudinaryDotNet.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\hocki7\Do_an\Do_an\back_end\Perfume\Perfume.API\bin\Debug\net6.0\Newtonsoft.Json.dll

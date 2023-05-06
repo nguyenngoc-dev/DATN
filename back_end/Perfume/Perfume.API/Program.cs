@@ -2,6 +2,7 @@
 using Perfume.Common;
 using Perfume.DAL;
 using Perfume.BL;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,8 +37,11 @@ builder.Services.AddScoped<ISaleOrderDAL, SaleOrderDAL>();
 builder.Services.AddScoped<ISaleOrderBL, SaleOrderBL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<IPhotoBL, PhotoBL>();
 builder.Services.AddScoped<IDeliveryBL, DeliveryBL>();
 builder.Services.AddScoped<IDeliveryDAL, DeliveryDAL>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
 // Gán connection string cho MySQLConnectionString
 DataContext.MySQLConnectionString = builder.Configuration.GetConnectionString("MySqlConnectionString");
 // Validate sử dụng model state

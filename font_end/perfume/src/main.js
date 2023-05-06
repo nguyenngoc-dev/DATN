@@ -4,6 +4,9 @@ import App from './App.vue'
 import BaseLoading from "../src/components/base/BaseLoading.vue";
 import VueCarousel from 'vue-carousel';
 import BaseToast from "../src/components/base/BaseToast.vue";
+import store from "./store";
+
+
 // import BaseButton from "../src/components/base/BaseButton.vue";
 // import BaseCombobox from "../src/components/base/BaseCombobox.vue";
 
@@ -11,6 +14,7 @@ import BaseToast from "../src/components/base/BaseToast.vue";
 // app.component("BaseCombobox", BaseCombobox);
 
 const app = createApp(App);
+app.provide("store", store);
 app.component("BaseToast", BaseToast);
 app.component("BaseLoading", BaseLoading);
 app.use(VueCarousel);

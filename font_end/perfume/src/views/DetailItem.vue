@@ -130,6 +130,7 @@ import 'swiper/css/pagination'
 import { HTTP, HTTPCategorys, HTTPProductImages } from "../js/api.js"
 import CardItem from "../components/base/CardItem.vue";
 export default {
+    inject: ["store"],
     components: {
         CardItem,
         Swiper,
@@ -255,6 +256,7 @@ export default {
             }
             // Lưu lại danh sách sản phẩm vào sessionStorage
             sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.store.setCartItems();
             }
             
         },

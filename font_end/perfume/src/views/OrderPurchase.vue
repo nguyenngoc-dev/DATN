@@ -93,7 +93,7 @@
                                                 <label class="" for="billing_email">Email<abbr title="required"
                                                         class="required">*</abbr>
                                                 </label>
-                                                <input type="text" placeholder="nguyen@gmail.com" id="billing_email"
+                                                <input type="text" v-model="user.Email" placeholder="nguyen@gmail.com" id="billing_email"
                                                     name="billing_email" class="input-text ">
                                             </p>
 
@@ -154,7 +154,7 @@
                                                     <input type="radio" data-order_button_text="" checked="checked"
                                                         value="bacs" name="payment_method" class="input-radio mr-16"
                                                         id="payment_method_bacs">
-                                                    <label for="payment_method_bacs">Chuyển khoản trực tiếp</label>
+                                                    <label for="payment_method_bacs">Thanh toán sau khi nhận hàng</label>
                                                     <!-- <div class="payment_box payment_method_bacs">
                                                         <p>Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền trong tài khoản của chúng tôi được thanh toán.</p>
                                                     </div> -->
@@ -222,13 +222,15 @@ import "../js/main.js";
 import "../js/bxslider.min.js";
 import "../js/script.slider.js";
 import { Carousel, Slide } from 'vue-carousel';
-import { HTTP, HTTPOrders,HTTPDelivery } from "../js/api.js"
+import { HTTP, HTTPOrders,HTTPDelivery,HTTPUsers } from "../js/api.js"
 import { Suspense } from "vue";
 
 export default {
+    inject: ["store"],
     async created() {
         await this.getNewEmCode();
         this.getCartItems();
+        await this.getUserInfor();
     },
     computed: {
         CartQuantity() {
@@ -256,7 +258,8 @@ export default {
                 LastName: "",
                 DeliveryId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                 status: 0,
-                TotalPrice: 0
+                TotalPrice: 0,
+                user:{},
             },
             delivery: {},
             user: JSON.parse(sessionStorage.getItem('account')) || [],
@@ -306,6 +309,7 @@ export default {
                     if(cartItems.length) {
                         sessionStorage.removeItem('cartItems')
                     }
+                    this.store.setCartItems();
                 }
                 catch(ex) {
                     console.log(ex)
@@ -333,6 +337,20 @@ export default {
               if(account.length) {
                 return account[0];
               }
+        },
+        async getUserInfor() {
+            let account = JSON.parse(sessionStorage.getItem('account')) || [];
+            if(account.length) {
+                HTTPUsers.get(`/${account[0]}`).then((res) => {
+                this.user = res.data;
+                this.saleOrder.CustomerAddress = this.user.Address;
+                this.saleOrder.FirstName = this.user.FirstName;
+                this.saleOrder.LastName = this.user.LastName;
+                this.saleOrder.CustomerPhone = this.user.PhoneNumber;
+
+
+                })
+            }
         },
          /**
          * author:Nguyễn Văn Ngọc(3/1/2023)

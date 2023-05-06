@@ -5,18 +5,18 @@
         <div class="col-md-8">
           <div class="user-menu">
             <ul>
-              <li  v-if ="isShowRegister"><router-link to="/account">
+              <li  v-if ="store.state.account.length"><router-link to="/account">
                 <i class="fas fa-user"></i> Tài Khoản
               </router-link></li>
-              <li v-if ="isShowRegister"><router-link to="/register">
+              <li v-if = "store.state.account.length == 0"><router-link to="/register">
                   <i class="fas fa-user-cog"></i> Đăng kí
                 </router-link>
               </li>
-              <li v-if ="isShowRegister"> <router-link to="/login">
+              <li v-if = "store.state.account.length == 0"> <router-link to="/login">
                   <i class="fas fa-sign-in-alt"></i> Đăng nhập
                 </router-link>
               </li>
-              <li @click="onLogout" v-if ="isShowRegister" style="cursor: pointer; color: rgb(138, 141, 143);">
+              <li @click="onLogout" v-if ="store.state.account.length" style="cursor: pointer; color: rgb(138, 141, 143);">
                   <i class="fas fa-sign-in-alt"></i> Đăng xuất
               </li> 
             </ul>
@@ -108,18 +108,27 @@ import "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js";
 import "../../js/jquery.sticky.js";
 import "../../js/main.js"
 export default {
+  inject: ["store"],
   computed: {
     CartQuantity() {
-      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      let  cartItems =  this.store.state.cartItems;
       return cartItems.length;
     },
     TotalPirceCart() {
       let totalPrice = 0;
-      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      let  cartItems =  this.store.state.cartItems;
       cartItems.forEach(item => {
         totalPrice += item.Price;
       });
       return totalPrice;
+    }
+  },
+  watch: {
+    store: {
+      handler(newValue, oldValue) {
+        console.log("alo", newValue)
+      },
+      deep: true
     }
   },
   data() {
@@ -129,6 +138,9 @@ export default {
       isShowLogout: false,
       isShowRegister:true
     }
+  },
+  mounted(){
+    console.log( this.store)
   },
   methods: {
     onSearch() {
@@ -148,6 +160,9 @@ export default {
       }
       this.showRegister();
       this.showLogout();
+      console.log(this.store.state.account)
+      this.store.clearAccount();
+      console.log(this.store.state.account)
       this.$router.push('/login');
       
     },

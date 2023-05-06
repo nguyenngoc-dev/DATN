@@ -121,6 +121,7 @@
 <script>
 
 export default {
+    inject: ["store"],
     computed: {
     CartQuantity() {
       let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
@@ -197,14 +198,15 @@ export default {
       let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
       let result = [];
       if(cartItems.length) {
-         result = cartItems.filter(item => item.ProductId !== product.value.ProductId
-        );
-      }
-
-      // Lưu lại danh sách sản phẩm vào sessionStorage
-      sessionStorage.setItem('cartItems', JSON.stringify(result));
-      this.isShowToast = true;
-      this.getCartItems();
+          result = cartItems.filter(item => item.ProductId !== product.value.ProductId
+          );
+        }
+        
+        // Lưu lại danh sách sản phẩm vào sessionStorage
+        sessionStorage.setItem('cartItems', JSON.stringify(result));
+        this.isShowToast = true;
+        this.getCartItems();
+        this.store.setCartItems();
     },
      /**
          * author:Nguyễn Văn Ngọc(3/1/2023)

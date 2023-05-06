@@ -81,6 +81,7 @@ import { HTTP } from "../js/api.js"
 import CardItem from "../components/base/CardItem.vue";
 import paginate from "vuejs-paginate/src/components/Paginate.vue";
 export default {
+    inject: ["store"],
     components: {
         paginate,
         CardItem,
@@ -188,6 +189,7 @@ export default {
             // Lưu lại danh sách sản phẩm vào sessionStorage
             sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
             this.isShowToast = true;
+            this.store.setCartItems();
         },
         /**
      * author:Nguyễn Văn Ngọc(3/1/2023)

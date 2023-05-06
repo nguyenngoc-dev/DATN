@@ -35,16 +35,17 @@
 <script>
  import {HTTPUsers} from "../js/api.js";
 export default {
+  inject: ["store"],
   data() {
     return {
       userlist:[],
       username: "",
       password:"",
-      isShowToast:false,
-      toastContent: "AUTHEN", // nội dung toast message
-      toastTitle: "", // Tiêu đề toast,
-      isErrorToast: false, // Icon toast lỗi
-      isSuccessToast: true, // icon toast thành công
+        isShowToast:false,
+        toastContent: "AUTHEN", // nội dung toast message
+        toastTitle: "", // Tiêu đề toast,
+        isErrorToast: false, // Icon toast lỗi
+        isSuccessToast: true, // icon toast thành công
     }
   },
   async created() {
@@ -70,6 +71,7 @@ export default {
               account.push(item.UserId);
               // Lưu lại danh sách sản phẩm vào sessionStorage
               sessionStorage.setItem('account', JSON.stringify(account));
+              this.store.setAccount();
             if(item.Role == "Admin") {
               setTimeout(() => {
                 window.open("http://localhost:8080/");
@@ -79,7 +81,7 @@ export default {
             }
             else {
               setTimeout(() => {
-                this.$router.push('/' + this.username);
+                this.$router.push('/');
               }, 1500);
             }
           return;

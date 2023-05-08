@@ -37,6 +37,8 @@ builder.Services.AddScoped<ISaleOrderDAL, SaleOrderDAL>();
 builder.Services.AddScoped<ISaleOrderBL, SaleOrderBL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<IOrderItemBL, OrderItemBL>();
+builder.Services.AddScoped<IOrderItemDAL, OrderItemDAL>();
 builder.Services.AddScoped<IPhotoBL, PhotoBL>();
 builder.Services.AddScoped<IDeliveryBL, DeliveryBL>();
 builder.Services.AddScoped<IDeliveryDAL, DeliveryDAL>();

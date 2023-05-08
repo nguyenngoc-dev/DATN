@@ -50,7 +50,7 @@ namespace Perfume.Common
         /// <summary>
         /// Tình trạng đơn hàng
         /// </summary>
-        public int status { get; set; }
+        public int Status { get; set; }
 
         /// <summary>
         /// Tổng tiền đơn hàng

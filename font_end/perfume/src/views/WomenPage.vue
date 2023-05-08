@@ -122,7 +122,7 @@ export default {
             try {
                 // show loading
                 this.isShowLoading = true;
-                HTTP.post(`/filter`, this.getFilterParams("", 20, 1)).then((res) => {
+                HTTP.post(`/filter`, this.getFilterParams("", 100, 1)).then((res) => {
                     let productList = res.data.Data.filter(product => {
                         return product.IsActive == true
                     });

@@ -129,9 +129,13 @@ export default {
             try {
                 // show loading
                 this.isShowLoading = true;
-                HTTP.post(`/filter`, this.getFilterParams("", 20, 1)).then((res) => {
-                    this.products = res.data.Data.filter(product => {
+                HTTP.post(`/filter`, this.getFilterParams("", 100, 1)).then((res) => {
+                    let productList = res.data.Data.filter(product => {
                         return product.IsActive == true
+                    });
+                    this.products = productList.filter(product=>{
+                        console.log(product.CategoryId)
+                        return product.CategoryId == "3553a374-de13-40dd-9ef1-011e782e8c62"
                     });
                     this.totalPage = res.data.TotalPage;
                     this.isShowLoading = false;

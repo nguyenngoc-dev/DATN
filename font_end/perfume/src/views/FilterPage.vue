@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Nước hoa nam</h2>
+                        <h2>Kết quả tìm kiếm</h2>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,13 @@ export default {
             isErrorToast: false, // Icon toast lỗi
             isSuccessToast: true, // icon toast thành công
             pageTotal: 0, // tổng số bản ghi
+
             //pageSizeList: RESOURCES.PAGINATION, // mảng phân trang
+        }
+    },
+    watch: {
+       '$route.params.name': function (newVal, oldVal) {
+            this.getProductFirst();
         }
     },
     async created() {
@@ -121,13 +127,9 @@ export default {
             try {
                 // show loading
                 this.isShowLoading = true;
-                HTTP.post(`/filter`, this.getFilterParams("", 100, 1)).then((res) => {
-                    let productList = res.data.Data.filter(product => {
+                HTTP.post(`/filter`, this.getFilterParams(`${this.$route.params.name}`, 100, 1)).then((res) => {
+                    this.products = res.data.Data.filter(product => {
                         return product.IsActive == true
-                    });
-                    this.products = productList.filter(product=>{
-                        console.log(product.CategoryId)
-                        return product.CategoryId == "3fa85f64-5717-4562-b3fc-2c963f66afa6"
                     });
                     this.totalPage = res.data.TotalPage;
                     this.isShowLoading = false;

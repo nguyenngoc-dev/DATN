@@ -2,7 +2,8 @@
     <div class="wrapper ">
         <div id="formContent" class="account">
             <!-- Tabs Titles -->
-            <h2 class="active"> Tài Khoản </h2>
+            <h2 class="active" style="cursor: pointer;" @click="isShow(true, false)"> Tài Khoản </h2>
+            <h2 class="active" style="cursor: pointer;" @click="isShow(false, true)"> Đơn hàng</h2>
             <!-- // <h2 class="inactive underlineHover">Sign Up </h2> -->
 
             <!-- Icon -->
@@ -11,7 +12,7 @@
     </div> -->
 
             <!-- Login Form -->
-            <div>
+            <div v-if="isShowAccount">
                 <div class="flex">
                     <input title="Họ" type="text" v-model="user.FirstName" id="login" class="fadeIn second" name="login"
                         placeholder="Họ và tên đệm">
@@ -36,8 +37,56 @@
                     class="fadeIn third" name="login" placeholder="Xác nhận mật khẩu mới">
                 <input type="submit" @click="onUpdate()" class="fadeIn fourth update" value="Cập nhật">
             </div>
+            <div v-if="isShowOrder" class="sale-order-container">
+                <div class="container">
+                    <h1>Thông tin đơn hàng</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 1"></td>
+                                <td>Áo thun nam</td>
+                                <td>2</td>
+                                <td>200,000 đồng</td>
+                            </tr>
+                            <tr>
+                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 2"></td>
+                                <td>Quần jean nam</td>
+                                <td>1</td>
+                                <td>250,000 đồng</td>
+                            </tr>
+                            <tr>
+                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 3"></td>
+                                <td>Giày thể thao nữ</td>
+                                <td>1</td>
+                                <td>300,000 đồng</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"><strong>Tổng tiền:</strong></td>
+                                <td>750,000 đồng</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="order-info">
+                        <p><strong>Mã đơn hàng:</strong> DH001</p>
+                        <p><strong>Ngày đặt hàng:</strong> 05/08/2023</p>
+                        <p><strong>Tên khách hàng:</strong> Nguyễn Văn A</p>
+                        <p><strong>Tình trạng đơn hàng</strong> Nguyễn Văn A</p>
+                        <p><strong>Địa chỉ:</strong> 123 đường ABC, phường XYZ, quận QWE, thành phố HCM</p>
+                    </div>
+                </div>
+            </div>
 
-          
+
 
         </div>
     </div>
@@ -68,9 +117,15 @@ export default {
             toastTitle: "", // Tiêu đề toast,
             isErrorToast: false, // Icon toast lỗi
             isSuccessToast: true, // icon toast thành công
+            isShowAccount: true,
+            isShowOrder: false
         }
     },
     methods: {
+        isShow(account, order) {
+            this.isShowAccount = account;
+            this.isShowOrder = order;
+        },
         async onUpdate() {
             console.log('lol')
             let validate = true;
@@ -126,5 +181,33 @@ export default {
 
 .fourth.update {
     margin-top: 12px;
+}
+.sale-order-container .container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.sale-order-container table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.sale-order-container th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+.sale-order-container th {
+	background-color: #f2f2f2;
+}
+
+.sale-order-container img {
+	max-width: 100px;
+	height: auto;
+}
+
+.sale-order-container .order-info p {
+	margin-bottom: 10px;
 }
 </style>

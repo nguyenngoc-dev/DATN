@@ -8,7 +8,7 @@
                     <div class="product-content-right">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="product-images">
+                                <div class="product-images detail-item">
                                     <div class="product-main-img">
                                         <img :src="products.ImageUrl" alt="">
                                     </div>
@@ -52,7 +52,7 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                {{ products.DetailDescription }}
+                                                <div v-html="products.DetailDescription"></div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="profile">
                                                 <h2>Thông tin</h2>
@@ -93,7 +93,7 @@
                                             <img :src="product.ImageUrl" alt="Lỗi ảnh">
                                         </router-link>
                                         <div class="product-hover">
-                                            <a href="" class="add-to-cart-link" @click="onAddCartItem(product)"><i
+                                            <a href="#" class="add-to-cart-link" @click="onAddCartItem(product)"><i
                                                     class="fas fa-shopping-cart"></i> Thêm vào giỏ</a>
                                             <router-link class="view-details-link" :to="'/detail/' + product.ProductId">
                                                 Xem chi tiết
@@ -117,6 +117,7 @@
             </div>
         </div>
     </div>
+    <BaseLoading v-if="isShowLoading" />
     <BaseToast v-if="isShowToast" @closeToast="onhideToast" @onhideToast="onhideToast" :toastType="toastContent"
         :toastTitle="toastTitle" :isSuccessToast="isSuccessToast" :isErrorToast="isErrorToast" />
 </template>
@@ -141,8 +142,18 @@ export default {
             modules: [Pagination]
         }
     },
+    watch: {
+       '$route.params.id': function (newVal, oldVal) {
+        this.isShowLoading = true;
+            HTTP.get(`/${newVal}`).then((response) => {
+                    this.products = response.data;
+                    this.isShowLoading = false;
+            });
+        }
+    },
     data() {
         return {
+            isShowLoading:false,
             productQuantity: 1,
             isShowToast: false,
             toastContent: "ADD", // nội dung toast message
@@ -179,6 +190,7 @@ export default {
     },
     async created() {
         this.productIdUpdate = this.$route.params.id;
+        this.isShowLoading = true;
         // lấy dữ liệu phòng ban đẩy vào combobox
         this.getDepartment();
         await this.getProductImages();
@@ -197,6 +209,7 @@ export default {
                             category.CategoryId === this.products?.CategoryId
                     );
                     this.products.CategoryName = categorySelected.CategoryName;
+                    this.isShowLoading = false;
                 });
             } catch (error) {
                 console.log(error);
@@ -206,6 +219,7 @@ export default {
         await this.getProductFirst();
     },
     methods: {
+
         async getEmpById() {
             try {
                 const res = await HTTP.get(`/${this.productIdUpdate}`);
@@ -217,7 +231,6 @@ export default {
         async getProductFirst() {
             try {
                 // show loading
-                this.isShowLoading = true;
                 HTTP.post(`/filter`, this.getFilterParams("", 20, 1)).then((res) => {
                     this.productList = res.data.Data.filter(product => {
                         return product.IsActive == true
@@ -317,7 +330,10 @@ export default {
 .mr-12 {
 margin-right: 12px;
 }
-.ml-12 {
-
+.product-images.detail-item {
+    width: 350px;
+    text-align: center;
+    margin: auto;
+    height: auto;
 }
 </style>

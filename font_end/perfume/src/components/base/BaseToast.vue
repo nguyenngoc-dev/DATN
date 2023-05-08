@@ -83,6 +83,12 @@ export default {
 			case RESOURCES.FORM_MODE.DUPLICATE:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.DUP_AUTHEN
 				break;
+			case RESOURCES.FORM_MODE.NEEDBUY:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.NEEDBUY
+				break;
+			case RESOURCES.FORM_MODE.LOGREQ:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.LOGREQ
+				break;
 			case RESOURCES.FORM_MODE.MATCH:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.MATCH
 				break;

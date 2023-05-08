@@ -35,7 +35,9 @@ const RESOURCES = {
       DUP_AUTHEN:"Tài khoản và mật khẩu đã tồn tại",
       MATCH:"Mật khẩu không khớp",
       EMPTY:"Bạn cần nhập đủ trường",
-      OVERFLOW:"Số lượng sản phẩm còn lại không đáp ứng."
+      OVERFLOW:"Số lượng sản phẩm còn lại không đáp ứng.",
+      LOGREQ:"Bạn cần phải đăng nhập",
+      NEEDBUY:"Giỏ hàng trống, hãy thêm sản phẩm vào giỏ"
     }
   },
   DepartmentId:'DepartmentId',
@@ -52,7 +54,9 @@ const RESOURCES = {
     UPDATEAUTH:"UPDATEAUTH",
     EMPTY:"EMPTY",
     OVERFLOW:"OVERFLOW",
-    ORDERSUCCESS:"ORDERSUCCESS"
+    ORDERSUCCESS:"ORDERSUCCESS",
+    LOGREQ:"LOGREQ",
+    NEEDBUY:"NEEDBUY"
   },
   FORM_TITLE: {
     PRODUCT:{

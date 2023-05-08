@@ -222,7 +222,7 @@ import "../js/main.js";
 import "../js/bxslider.min.js";
 import "../js/script.slider.js";
 import { Carousel, Slide } from 'vue-carousel';
-import { HTTP, HTTPOrders,HTTPDelivery,HTTPUsers } from "../js/api.js"
+import { HTTP, HTTPOrders,HTTPDelivery,HTTPUsers,HTTPOrderItem } from "../js/api.js"
 import { Suspense } from "vue";
 
 export default {
@@ -261,6 +261,15 @@ export default {
                 TotalPrice: 0,
                 user:{},
             },
+            orderItem:{
+                    CreatedDate: "2023-05-08T14:01:05.931Z",
+                    ModifiedDate: "2023-05-08T14:01:05.931Z",
+                    OrderItemId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    ProductId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    SaleOrderId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    Quantity: 0,
+                    Price: 0
+            },
             delivery: {},
             user: JSON.parse(sessionStorage.getItem('account')) || [],
             isShowToast:false,
@@ -286,6 +295,7 @@ export default {
             //this.newEmployeeCode = response.data;
         },
         async onPerchase() {
+            let me = this;
             if(!this.validate()) {
                 this.toastContent ="EMPTY"
                 this.isErrorToast = true;
@@ -299,6 +309,19 @@ export default {
                 this.saleOrder.TotalPrice = this.TotalPirceCart;
                 try{
                     const res = await HTTPOrders.post('',this.saleOrder);
+                    if(res.data && this.cartResult.length) {
+                        this.cartResult.forEach(item => {
+                            item.value.Quantity = item.value.Quantity - item.count;
+                            item.value.QuantityPurchased = item.count; 
+                            HTTP.put(`/${item.value.ProductId}`,item.value) 
+                            me.orderItem.ProductId = item.value.ProductId;
+                            me.orderItem.SaleOrderId = res.data;
+                            me.orderItem.Quantity = item.count;
+                            me.orderItem.Price = item.value.Price;
+                            HTTPOrderItem.post("",me.orderItem);
+                                
+                        });
+                    }
                     this.isShowLoading = false;
                     this.toastContent =  "ORDERSUCCESS"
                     this.isErrorToast = false;
@@ -310,6 +333,9 @@ export default {
                         sessionStorage.removeItem('cartItems')
                     }
                     this.store.setCartItems();
+                    setTimeout(() => {
+                        this.$router.push('/');
+                    }, 1500);
                 }
                 catch(ex) {
                     console.log(ex)
@@ -385,6 +411,7 @@ export default {
             count: counts[item.ProductId],
             }));
             this.cartResult =  result;
+            console.log(this.cartResult)
         }, 
         validate() {
             let success = true;

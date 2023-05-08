@@ -20,3 +20,6 @@ export const HTTPUsers = axios.create({
 export const HTTPDelivery = axios.create({
   baseURL: "https://localhost:44314/api/v1/Deliveries",
 });
+export const HTTPOrderItem = axios.create({
+  baseURL: "https://localhost:44314/api/v1/OrderItems",
+});

@@ -11,6 +11,7 @@ import ContactPage from "../views/ContactPage.vue"
 import DetailItem from "../views/DetailItem.vue"
 import AccountPage from "../views/AccountPage.vue"
 import OrderPurchase from "../views/OrderPurchase.vue"
+import FilterPage from "../views/FilterPage.vue"
 
 
 const routes = [
@@ -27,6 +28,7 @@ const routes = [
   { path: "/account", component: AccountPage },
   { path: "/contact", component: ContactPage },
   { path: "/detail/:id", component: DetailItem },
+  { path: "/filter/:name", component: FilterPage },
 ];
 
 const router = createRouter({

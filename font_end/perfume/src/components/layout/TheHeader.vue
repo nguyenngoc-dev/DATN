@@ -144,7 +144,8 @@ export default {
   },
   methods: {
     onSearch() {
-      
+      this.$router.push(`/filter/${this.textSearch}`);
+      this.textSearch = "";
     },
     onLogout() {
 
@@ -164,7 +165,7 @@ export default {
       this.store.clearAccount();
       console.log(this.store.state.account)
       this.$router.push('/login');
-      
+      this.store.clearCartItems();
     },
     showRegister() {
       let account = JSON.parse(sessionStorage.getItem('account')) || [];

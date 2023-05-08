@@ -18,6 +18,7 @@
         <th scope="col">Sản phẩm</th>
         <th scope="col" width="120">Số lượng</th>
         <th scope="col" width="120">Giá</th>
+        <th scope="col" width="120">Thành tiền</th>
         <th scope="col" class="text-right" width="200"> </th>
         </tr>
         </thead>
@@ -34,13 +35,18 @@
                 </figure>
             </td>
             <td> 
-                <input class="form-control" type="number" v-model="product.count">
+                <input @change="onChangeQuantity(product,product.count)"  class="form-control" type="number" v-model="product.count" min="1">
                 
             </td>
             <td> 
                 <div class="price-wrap"> 
                     <var class="price">{{ product.value.Price }}</var> 
-                    <small class="text-muted"> $315.20 each </small> 
+                    
+                </div> 
+            </td>
+            <td> 
+                <div class="price-wrap"> 
+                    <var class="price">{{ product.value.Price * product.count }}</var> 
                 </div> 
             </td>
             <td class="text-right"> 
@@ -53,8 +59,8 @@
         </table>
         
         <div class="card-body border-top">
-            <router-link to="/order-purchase"  class="btn btn-primary float-md-right"> 
-               Thanh toán<i class="fa fa-chevron-right" style="margin-left: 4px;margin-top: 4px;"></i> </router-link>
+            <div @click="onPerchase"  class="btn btn-primary float-md-right"> 
+               Thanh toán<i class="fa fa-chevron-right" style="margin-left: 4px;margin-top: 4px;"></i> </div>
             <router-link to="/" class="btn btn-light"> <i class="fa fa-chevron-left"></i> 
                 Quay lại </router-link>
         </div>	
@@ -86,7 +92,7 @@
                             <dl class="dlist-align">
                             <dt>Tổng:</dt>
                             <dd class="text-right">
-                                {{ TotalPirceCart }}
+                                {{ totalPrice }} vnđ
                             </dd>
                             </dl>
                             <dl class="dlist-align">
@@ -95,7 +101,7 @@
                             </dl>
                             <dl class="dlist-align">
                             <dt>Phải trả:</dt>
-                            <dd class="text-right  h5"><strong> {{ TotalPirceCart }}</strong></dd>
+                            <dd class="text-right  h5"><strong> {{ totalPrice }} vnđ</strong></dd>
                             </dl>
                             <hr />
                             <p class="text-center mb-3">
@@ -127,14 +133,7 @@ export default {
       let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
       return cartItems.length;
     },
-    TotalPirceCart() {
-      let totalPrice = 0;
-      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
-      cartItems.forEach(item => {
-        totalPrice += item.Price;
-      });
-      return totalPrice;
-    },
+    
     // getCartItems() {
     //     let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
     //     const counts = {};
@@ -158,6 +157,7 @@ export default {
   },
   created() {
     this.getCartItems();
+    this.TotalPirceCart();
   },
   data() {
     return {
@@ -168,13 +168,71 @@ export default {
         toastTitle: "", // Tiêu đề toast,
         isErrorToast: false, // Icon toast lỗi
         isSuccessToast: true, // icon toast thành công
+        totalPrice:0,
     }
   
   },  
   methods: {
+    onChangeQuantity(product,quantity) {
+        let result = [];
+        let cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        console.log(product);
+        if(cartItems.length) {
+          result = cartItems.filter(item => item.ProductId !== product.value.ProductId
+          );
+        }
+        // Lưu lại danh sách sản phẩm vào sessionStorage
+        sessionStorage.setItem('cartItems', JSON.stringify(result));
+       
+            if(quantity < product.value.Quantity) {
+                // Thêm sản phẩm vào giỏ hàng
+                if (quantity) {
+                for (let i = 0; i < quantity; i++) {
+                    result.push(product.value);
+                }
+            }
+            // Lưu lại danh sách sản phẩm vào sessionStorage
+            sessionStorage.setItem('cartItems', JSON.stringify(result));
+            this.store.setCartItems();
+            this.TotalPirceCart();
+        }
+    },
+    TotalPirceCart() {
+      let totalPrice = 0;
+      let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+      cartItems.forEach(item => {
+        totalPrice += item.Price;
+      });
+      this.totalPrice =  totalPrice;
+    },
+    onPerchase(){
+        let account = JSON.parse(sessionStorage.getItem('account')) || [];
+        let cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        if(!account.length) {
+            this.toastContent ="LOGREQ"
+            this.isErrorToast = true;
+            this.isShowToast = true;
+            setTimeout(() => {
+                this.$router.push("/login");
+              }, 1500);
+           
+        }
+        else if(!cartItems.length) {
+            this.toastContent ="NEEDBUY"
+            this.isErrorToast = true;
+            this.isShowToast = true;
+            setTimeout(() => {
+                this.$router.push("/");
+              }, 1500);
+        }
+        else {
+            this.$router.push("/order-purchase");
+        }
+    },
     ///custom lại mảng giỏ hàng
     getCartItems() {
         let  cartItems =  JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        
         const counts = {};
         const unique = [];
         for (let item of cartItems) {

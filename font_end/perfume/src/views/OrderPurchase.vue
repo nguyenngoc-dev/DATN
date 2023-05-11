@@ -142,8 +142,8 @@
                                                 </tr>
                                                 <tr class="order-total">
                                                     <th>Thanh toán</th>
-                                                    <td><strong><span class="amount">{{ TotalPirceCart }}
-                                                                vnđ</span></strong> </td>
+                                                    <td><strong><span class="amount">{{ TotalPirceCart }} vnđ
+                                                                </span></strong> </td>
                                                 </tr>
 
                                             </tfoot>
@@ -224,6 +224,8 @@ import "../js/script.slider.js";
 import { Carousel, Slide } from 'vue-carousel';
 import { HTTP, HTTPOrders,HTTPDelivery,HTTPUsers,HTTPOrderItem } from "../js/api.js"
 import { Suspense } from "vue";
+import {formatMoney} from "../js/common.js"
+
 
 export default {
     inject: ["store"],
@@ -260,6 +262,7 @@ export default {
                 status: 0,
                 TotalPrice: 0,
                 user:{},
+                formatMoney
             },
             orderItem:{
                     CreatedDate: "2023-05-08T14:01:05.931Z",

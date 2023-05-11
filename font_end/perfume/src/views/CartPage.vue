@@ -1,7 +1,13 @@
 <template>
-        <section class="section-pagetop bg">
-         <div class="container">
-            <h2 class="title-page">Giỏ hàng</h2>
+        <section >
+         <div >
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Giỏ hàng</h2>
+                    </div>
+                </div>
+            </div>
         </div> 
         </section>
         
@@ -17,7 +23,7 @@
         <tr class="small text-uppercase">
         <th scope="col">Sản phẩm</th>
         <th scope="col" width="120">Số lượng</th>
-        <th scope="col" width="120">Giá</th>
+        <th scope="col" width="120">Đơn giá</th>
         <th scope="col" width="120">Thành tiền</th>
         <th scope="col" class="text-right" width="200"> </th>
         </tr>
@@ -40,13 +46,13 @@
             </td>
             <td> 
                 <div class="price-wrap"> 
-                    <var class="price">{{ product.value.Price }}</var> 
+                    <var class="price">{{ formatMoney(product.value.Price) }}</var> 
                     
                 </div> 
             </td>
             <td> 
                 <div class="price-wrap"> 
-                    <var class="price">{{ product.value.Price * product.count }}</var> 
+                    <var class="price">{{ formatMoney(product.value.Price * product.count) }}</var> 
                 </div> 
             </td>
             <td class="text-right"> 
@@ -92,7 +98,7 @@
                             <dl class="dlist-align">
                             <dt>Tổng:</dt>
                             <dd class="text-right">
-                                {{ totalPrice }} vnđ
+                                {{ formatMoney(totalPrice) }} 
                             </dd>
                             </dl>
                             <dl class="dlist-align">
@@ -101,7 +107,7 @@
                             </dl>
                             <dl class="dlist-align">
                             <dt>Phải trả:</dt>
-                            <dd class="text-right  h5"><strong> {{ totalPrice }} vnđ</strong></dd>
+                            <dd class="text-right  h5"><strong> {{ formatMoney(totalPrice) }}</strong></dd>
                             </dl>
                             <hr />
                             <p class="text-center mb-3">
@@ -125,7 +131,7 @@
         :isErrorToast="isErrorToast" />
 </template>
 <script>
-
+import {formatMoney} from "../js/common.js"
 export default {
     inject: ["store"],
     computed: {
@@ -169,6 +175,7 @@ export default {
         isErrorToast: false, // Icon toast lỗi
         isSuccessToast: true, // icon toast thành công
         totalPrice:0,
+        formatMoney
     }
   
   },  
@@ -259,12 +266,12 @@ export default {
           result = cartItems.filter(item => item.ProductId !== product.value.ProductId
           );
         }
-        
         // Lưu lại danh sách sản phẩm vào sessionStorage
         sessionStorage.setItem('cartItems', JSON.stringify(result));
         this.isShowToast = true;
         this.getCartItems();
         this.store.setCartItems();
+        this.TotalPirceCart();
     },
      /**
          * author:Nguyễn Văn Ngọc(3/1/2023)
@@ -288,4 +295,7 @@ export default {
 @import "../../public/assets/css/bootstrap.css";
 @import "../../public/assets/css/responsive.css";
 @import "../../public/assets/css/ui.css";
+.product-bit-title {
+    background-color: var(--primary-color);
+}
 </style>

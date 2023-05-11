@@ -38,51 +38,77 @@
                 <input type="submit" @click="onUpdate()" class="fadeIn fourth update" value="Cập nhật">
             </div>
             <div v-if="isShowOrder" class="sale-order-container">
-                <div class="container">
+                <div v-if="this.saleOrders.length" class="container">
                     <h1>Thông tin đơn hàng</h1>
                     <table>
                         <thead>
                             <tr>
-                                <th>Ảnh sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Số lượng</th>
-                                <th>Giá tiền</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Tên khách hàng</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Tình trạng</th>
+                                <th>Tổng tiền</th>
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 1"></td>
-                                <td>Áo thun nam</td>
-                                <td>2</td>
-                                <td>200,000 đồng</td>
-                            </tr>
-                            <tr>
-                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 2"></td>
-                                <td>Quần jean nam</td>
-                                <td>1</td>
-                                <td>250,000 đồng</td>
-                            </tr>
-                            <tr>
-                                <td><img src="https://nuochoa95.com/Data/images/san%20pham/Parfums%20de%20Marly/Parfums-De-Marly-Delina-Eau-De-Parfum.jpg" alt="Product 3"></td>
-                                <td>Giày thể thao nữ</td>
-                                <td>1</td>
-                                <td>300,000 đồng</td>
+                            <tr v-for="(orderDetail, index) in orderDetails" :key="index">
+                                <td>{{ orderDetail.saleOrder.SaleOrderCode }}</td>
+                                <td>{{ orderDetail.saleOrder.FirstName + ' ' + orderDetail.saleOrder.LastName }}</td>
+                                <td>{{ orderDetail.saleOrder.CustomerAddress }}</td>
+                                <td>{{ orderDetail.saleOrder.CustomerPhone }}</td>
+                                <td>{{ formatStatus(orderDetail.saleOrder.Status) }}</td>
+                                <td>{{ formatMoney(orderDetail.saleOrder.TotalPrice) }}</td>
+                                <td @click="showOrderDetail(orderDetail)">Xem chi tiết</td>
+
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3"><strong>Tổng tiền:</strong></td>
-                                <td>750,000 đồng</td>
-                            </tr>
-                        </tfoot>
                     </table>
-                    <div class="order-info">
-                        <p><strong>Mã đơn hàng:</strong> DH001</p>
-                        <p><strong>Ngày đặt hàng:</strong> 05/08/2023</p>
-                        <p><strong>Tên khách hàng:</strong> Nguyễn Văn A</p>
-                        <p><strong>Tình trạng đơn hàng</strong> Nguyễn Văn A</p>
-                        <p><strong>Địa chỉ:</strong> 123 đường ABC, phường XYZ, quận QWE, thành phố HCM</p>
+                    <div class="order-detail-dialog" v-if="isShowDetailOrder">
+                        <div style="display: flex;
+                                justify-content: space-between;
+                                align-items: center;">
+                            <h2 style=" margin: 0;
+                                color: black;
+                                margin-bottom: 12px;">Chi tiết đơn hàng</h2>
+                            <div class="icon-close-container">
+                                <div @click="onCloseOrderDetail()" class="icon-close"></div>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Ảnh sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(orderItem, index) in orderItemArray.orderItems" :key="index">
+                                    <td>{{ orderItem.product[0].ProductCode }}</td>
+                                    <td>{{ orderItem.product[0].ProductName }}</td>
+                                    <td> <img :src="orderItem.product[0].ImageUrl" alt=""> </td>
+                                    <td>{{ orderItem.orderItem.Quantity }}</td>
+                                    <td>{{ formatMoney(orderItem.orderItem.Price) }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4"><strong>Tổng tiền:</strong></td>
+                                    <td>{{ formatMoney(orderItemArray.saleOrder.TotalPrice) }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
+
+
+                </div>
+                <div v-if="this.saleOrders.length == 0" class="order-empty">
+                    Bạn chưa có đơn hàng nào!!!
                 </div>
             </div>
 
@@ -94,21 +120,77 @@
         :toastTitle="toastTitle" :isSuccessToast="isSuccessToast" :isErrorToast="isErrorToast" />
 </template>
 <script>
-import { HTTPUsers } from '../js/api';
+import { HTTPUsers, HTTPOrders, HTTPOrderItem, HTTP } from '../js/api';
+import { formatMoney } from "../js/common.js"
+
 export default {
-    created() {
+    async created() {
         // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
         let account = JSON.parse(sessionStorage.getItem('account')) || [];
         if (account.length) {
             // gọi api lấy dữ liệu truyền vào th employee
-            HTTPUsers.get(`/${account[0]}`).then((response) => {
-                this.user = response.data;
-            });
+            const res = await HTTPUsers.get(`/${account[0]}`);
+            this.user = res.data;
+
+            const response = await HTTPOrders.get()
+            let saleOrder = response.data;
+            this.saleOrders = saleOrder.filter(item => item.UserId == account[0])
+            this.saleOrders.forEach(item => {
+                this.orderDetails.push({ saleOrder: item, orderItems: [] });
+            })
+            if (this.saleOrders.length) {
+                const res = await HTTPOrderItem.get();
+                let orderItem = res.data;
+                orderItem.forEach(item => {
+                    for (let i = 0; i < this.saleOrders.length; i++) {
+                        if (item.SaleOrderId == this.saleOrders[i].SaleOrderId) {
+                            this.orderItems.push(item);
+                        }
+                    }
+                });
+                this.orderDetails.forEach(orderDetail => {
+                    this.orderItems.forEach(orderItem => {
+                        if (orderDetail.saleOrder.SaleOrderId == orderItem.SaleOrderId) {
+                            orderDetail.orderItems.push({ orderItem: orderItem, product: [] })
+                        }
+                    })
+                })
+                if (this.orderItems.length) {
+                    for (let i = 0; i < this.orderItems.length; i++) {
+                        const response = await HTTP.get(`/${this.orderItems[i].ProductId}`);
+                        this.products.push(response.data)
+                    }
+                    //     const response = await HTTP.get();
+                    //     let product = response.data;
+                    //     this.products = product.filter(item => {
+                    //     for(let i = 0; i< this.orderItems.length;i++) {
+                    //         item.ProductId == this.orderItems[i].ProductId
+                    //     }
+                    //    })
+                }
+                this.orderDetails.forEach(orderDetail => {
+                    orderDetail.orderItems.forEach(orderItem => {
+                        this.products.forEach(product => {
+                            if (orderItem.orderItem.ProductId == product.ProductId) {
+                                orderItem.product.push(product)
+                            }
+                        })
+                    })
+
+                });
+
+            }
         }
     },
     data() {
         return {
             user: {},
+            account: {},
+            saleOrders: [],
+            orderItems: [],
+            products: [],
+            orderDetails: [],
+            orderItemArray: [],
             account: JSON.parse(sessionStorage.getItem('account')) || [],
             newPassword: "",
             repeatNewPassword: "",
@@ -118,10 +200,34 @@ export default {
             isErrorToast: false, // Icon toast lỗi
             isSuccessToast: true, // icon toast thành công
             isShowAccount: true,
-            isShowOrder: false
+            isShowOrder: false,
+            isShowDetailOrder: false,
+            formatMoney
         }
     },
     methods: {
+        onCloseOrderDetail() {
+            this.isShowDetailOrder = false;
+
+        },
+        showOrderDetail(OrderDetail) {
+            this.isShowDetailOrder = true;
+            this.orderItemArray = OrderDetail;
+        },
+        formatStatus(status) {
+            if (status == 1) {
+                return "Đang giao hàng"
+            }
+            else if (status == 2) {
+                return "Giao thành công"
+            }
+            else if (status == 3) {
+                return "Đơn hàng bị hủy"
+            }
+            else {
+                return "Đang chuẩn bị hàng"
+            }
+        },
         isShow(account, order) {
             this.isShowAccount = account;
             this.isShowOrder = order;
@@ -182,32 +288,78 @@ export default {
 .fourth.update {
     margin-top: 12px;
 }
+
 .sale-order-container .container {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
+    min-height: 400px;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .sale-order-container table {
-	border-collapse: collapse;
-	width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.sale-order-container th, td {
-	text-align: left;
-	padding: 8px;
+.sale-order-container th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .sale-order-container th {
-	background-color: #f2f2f2;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: white;
+    background-color: var(--primary-color);
+    text-align: center;
+}
+
+.sale-order-container tr {
+    cursor: pointer;
+    min-height: 40px;
+}
+
+.sale-order-container tr::nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.sale-order-container tr:hover {
+    background-color: #ddd;
 }
 
 .sale-order-container img {
-	max-width: 100px;
-	height: auto;
+    max-width: 100px;
+    height: auto;
 }
 
 .sale-order-container .order-info p {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.order-empty {
+    min-height: 200px;
+    margin-top: 100px;
+    font-size: 20px;
+}
+
+.order-detail-dialog {
+    position: fixed;
+    background: white;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    min-width: 700px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.order-detail-dialog .icon-close-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
 }
 </style>

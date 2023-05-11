@@ -12,11 +12,15 @@
 
     <!-- Login Form -->
     <div>
+        <input required  autocomplete="off" type="text" v-model="firstName"  id="password" class="fadeIn third" name="login" placeholder="First Name">
+        <input required  autocomplete="off" type="text" v-model="lastName"  id="password" class="fadeIn third" name="login" placeholder="Last Name">
+        <input required  type="text" v-model="email" id="login" class="fadeIn second" name="login" placeholder="Email">
+        <input required  type="text" v-model="phoneNumber" id="login" class="fadeIn second" name="login" placeholder="Phone Number">
+        <input required  type="text" v-model="address" id="login" class="fadeIn second" name="login" placeholder="Address">
         <input required  autocomplete="off" type="text" v-model="username"  id="password" class="fadeIn third" name="login" placeholder="Username">
-      <input required  type="text" v-model="email" id="login" class="fadeIn second" name="login" placeholder="Email">
       <input required  autocomplete="off" type="password" v-model="password" id="password" class="fadeIn third" name="login" placeholder="Password">
       <input required type="password" v-model="repeatPassword" id="password" class="fadeIn third" name="login" placeholder="Repeat password">
-      <input required type="submit" @click="onRegister()" class="fadeIn fourth" value="Đăng Ký">
+      <input required type="submit" @click="onRegister" class="fadeIn fourth" value="Đăng Ký">
     </div>
 
     <!-- Remind Passowrd -->
@@ -37,6 +41,7 @@
 <script>
  import {HTTPUsers} from "../js/api.js";
 export default {
+  inject: ["store"],
   data() {
     return {
       userlist:[],
@@ -44,6 +49,10 @@ export default {
       username: "",
       password:"",
       email:"",
+      firstName:"",
+      lastName:"",
+      phoneNumber:"",
+      address:"",
       repeatPassword:"",
       isShowToast:false,
       toastContent: "AUTHEN", // nội dung toast message
@@ -61,7 +70,7 @@ export default {
       this.userlist = res.data;
     },
 
-    onRegister() {
+    async onRegister() {
       let success = true;
       if(this.username.trim() == "" || this.password.trim() == "" || this.email.trim() == "" || this.repeatPassword.trim() == "") {
         success = false;
@@ -91,14 +100,14 @@ export default {
          this.user = {
             UserName: this.username,
             Password: this.password,
-            FirstName: "string",
-            LastName: "string",
-            Address: "string",
+            FirstName: this.firstName,
+            LastName: this.lastName,
+            Address: this.address,
             Role: "Customer",
             Email: this.email,
-            PhoneNumber: "string"
+            PhoneNumber: this.phoneNumber
           }
-          let res = HTTPUsers.post("", this.user);
+          let res = await HTTPUsers.post("", this.user);
           if(res) {
             this.toastContent ="SREGIS"
             this.isErrorToast = false;
@@ -106,9 +115,10 @@ export default {
             // Lấy danh sách sản phẩm từ sessionStorage (nếu đã có)
               let account = JSON.parse(sessionStorage.getItem('account')) || [];
               // Thêm sản phẩm vào giỏ hàng
-              account.push(this.username);
+              account.push(res.data);
               // Lưu lại danh sách sản phẩm vào sessionStorage
               sessionStorage.setItem('account', JSON.stringify(account));
+              this.store.setAccount();
             setTimeout(() => {
                 this.$router.push('/');
             }, 1500);

@@ -94,8 +94,6 @@
             <li><router-link class="navbar-nav-link" to="/women">Nước hoa nữ</router-link></li>
             <li><router-link class="navbar-nav-link" to="/unisex">Nước hoa unisex</router-link></li>
             <li><router-link class="navbar-nav-link" to="/cart">Giỏ hàng</router-link></li>
-            <li><router-link class="navbar-nav-link" to="/news">Tin tức</router-link></li>
-            <li><router-link class="navbar-nav-link" to="/contact">Liên hệ</router-link></li>
           </ul>
         </div>
       </div>

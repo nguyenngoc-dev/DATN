@@ -30,7 +30,7 @@
 
                         </h2>
                         <div class="product-carousel-price">
-                            <ins>{{ product.Price - product.Price * product.Discount / 100 }} vnđ</ins> <del>{{ product.Price }} vnđ</del>
+                            <ins>{{ formatMoney(product.Price) }} </ins> <span style="color: red;"><del>{{ formatMoney(product.Price + product.Price * product.Discount / 100) }}</del></span>
                         </div>
 
                         <div class="product-option-shop">
@@ -73,6 +73,8 @@ import { Carousel, Slide } from 'vue-carousel';
 import { HTTP } from "../js/api.js"
 import CardItem from "../components/base/CardItem.vue";
 import paginate from "vuejs-paginate/src/components/Paginate.vue";
+import {formatMoney} from "../js/common.js"
+
 export default {
     inject: ["store"],
     components: {
@@ -107,6 +109,7 @@ export default {
             isSuccessToast: true, // icon toast thành công
             pageTotal: 0, // tổng số bản ghi
             //pageSizeList: RESOURCES.PAGINATION, // mảng phân trang
+            formatMoney
         }
     },
     async created() {

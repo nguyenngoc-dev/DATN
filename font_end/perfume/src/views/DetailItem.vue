@@ -235,7 +235,7 @@ export default {
                     this.productList = res.data.Data.filter(product => {
                         return product.IsActive == true
                     });
-                    this.relatedList = [this.productList[4], this.productList[8], this.productList[10],
+                    this.relatedList = [this.productList[4], this.productList[1], this.productList[11],
                 
                     this.productList[2], this.productList[3], this.productList[5]];
                 })

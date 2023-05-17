@@ -25,7 +25,7 @@
                                 <div class="product-inner">
                                     <h2 class="product-name">{{ products.ProductName }}</h2>
                                     <div class="product-inner-price">
-                                        <ins>{{ products.Price - products.Price * products.Discount / 100 }} vnđ</ins> <del>{{ products.Price }} vnđ</del>
+                                        <ins>{{ formatMoney(products.Price) }} </ins> <span style="color: red;"><del>{{ formatMoney(products.Price + products.Price * products.Discount / 100) }}</del></span>
                                     </div>
                                     <div class="product-inner-price">
                                         Số lượng còn: {{ products.Quantity  }}
@@ -90,7 +90,7 @@
                                 <swiper-slide  v-for="(product, index) in relatedList" :key="index" class ="single-product mr-12 single-shop-product">
                                     <div class="product-f-image">
                                         <router-link :to="'/detail/' + product.ProductId">
-                                            <img :src="product.ImageUrl" alt="Lỗi ảnh">
+                                            <img :src="product.ImageUrl" alt="Lỗi ảnh" style="max-height: 354px;">
                                         </router-link>
                                         <div class="product-hover">
                                             <a href="#" class="add-to-cart-link" @click="onAddCartItem(product)"><i
@@ -101,12 +101,12 @@
                                         </div>
                                     </div>
 
-                                    <h2> <router-link :to="'/detail/' + product.ProductId">
+                                    <h2> <router-link :to="'/detail/' + product.ProductId" class="text-overflow">
                                             {{ product.ProductName }}
                                         </router-link></h2>
 
                                     <div class="product-carousel-price">
-                                        <ins>{{ product.Price }} vnđ</ins> <del>{{ product.Price }} vnđ</del>
+                                        <ins>{{ formatMoney(product.Price) }} </ins> <span style="color: red;"><del>{{ formatMoney(product.Price + product.Price * product.Discount / 100) }}</del></span>
                                     </div>
 
                                 </swiper-slide>
@@ -130,6 +130,8 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import { HTTP, HTTPCategorys, HTTPProductImages } from "../js/api.js"
 import CardItem from "../components/base/CardItem.vue";
+import {formatMoney} from "../js/common.js"
+
 export default {
     inject: ["store"],
     components: {
@@ -186,6 +188,7 @@ export default {
             showBtnCancel: false, // show nút không ở dialog
             showBtnChangeVal: false, // show nút thay đổi ở dialog khi click vào x
             productIdUpdate: null,
+            formatMoney
         };
     },
     async created() {
@@ -230,14 +233,15 @@ export default {
         },
         async getProductFirst() {
             try {
+                let productList = null;
                 // show loading
-                HTTP.post(`/filter`, this.getFilterParams("", 20, 1)).then((res) => {
-                    this.productList = res.data.Data.filter(product => {
+                HTTP.post(`/filter`, this.getFilterParams("", 100, 1)).then((res) => {
+                     productList = res.data.Data.filter(product => {
                         return product.IsActive == true
                     });
-                    this.relatedList = [this.productList[4], this.productList[1], this.productList[11],
-                
-                    this.productList[2], this.productList[3], this.productList[5]];
+                    this.relatedList = productList.filter(product => {
+                        return product.CategoryId == this.products.CategoryId && product.ProductId !== this.products.ProductId;
+                    });
                 })
                     .catch(error => {
                         //this.handleExeption(error);

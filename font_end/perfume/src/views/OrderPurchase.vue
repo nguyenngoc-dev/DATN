@@ -259,11 +259,12 @@ export default {
                 FirstName: "",
                 LastName: "",
                 DeliveryId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                status: 0,
+                Status: 0,
                 TotalPrice: 0,
-                user:{},
-                formatMoney
+                RejectReason:"",
             },
+            user:{},
+            formatMoney,
             orderItem:{
                     CreatedDate: "2023-05-08T14:01:05.931Z",
                     ModifiedDate: "2023-05-08T14:01:05.931Z",

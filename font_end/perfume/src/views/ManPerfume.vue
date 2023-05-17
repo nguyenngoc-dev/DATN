@@ -24,7 +24,7 @@
                             </router-link>
                         </div>
                         <h2>
-                            <router-link :to="'/detail/' + product.ProductId">
+                            <router-link :to="'/detail/' + product.ProductId" class="text-overflow">
                                 {{ product.ProductName }}
                             </router-link>
 

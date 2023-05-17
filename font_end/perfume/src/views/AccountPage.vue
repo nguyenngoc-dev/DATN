@@ -50,6 +50,8 @@
                                 <th>Tình trạng</th>
                                 <th>Tổng tiền</th>
                                 <th>Chức năng</th>
+                                <th>Hủy đơn</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -61,6 +63,7 @@
                                 <td>{{ formatStatus(orderDetail.saleOrder.Status) }}</td>
                                 <td>{{ formatMoney(orderDetail.saleOrder.TotalPrice) }}</td>
                                 <td @click="showOrderDetail(orderDetail)">Xem chi tiết</td>
+                                <td @click="onShowCancelOrder(orderDetail)">Hủy</td>
 
                             </tr>
                         </tbody>
@@ -84,7 +87,8 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Ảnh sản phẩm</th>
                                     <th>Số lượng</th>
-                                    <th>Giá tiền</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Thành tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,11 +98,12 @@
                                     <td> <img :src="orderItem.product[0].ImageUrl" alt=""> </td>
                                     <td>{{ orderItem.orderItem.Quantity }}</td>
                                     <td>{{ formatMoney(orderItem.orderItem.Price) }}</td>
+                                    <td>{{ formatMoney(orderItem.orderItem.Price * orderItem.orderItem.Quantity) }}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="4"><strong>Tổng tiền:</strong></td>
+                                    <td colspan="5"><strong>Tổng tiền:</strong></td>
                                     <td>{{ formatMoney(orderItemArray.saleOrder.TotalPrice) }}</td>
                                 </tr>
                             </tfoot>
@@ -110,6 +115,22 @@
                 <div v-if="this.saleOrders.length == 0" class="order-empty">
                     Bạn chưa có đơn hàng nào!!!
                 </div>
+            </div>
+            <div v-if="isCancel" class="cancel-order">
+                <div style="display: flex;
+                                justify-content: space-between;
+                                align-items: center;">
+                    <h2 style=" margin: 0;
+                                color: black;
+                                margin-bottom: 12px;">Lý do hủy đơn</h2>
+                    <div class="icon-close-container">
+                        <div @click="onCloseCancelOrder()" class="icon-close"></div>
+                    </div>
+                </div>
+                <textarea rows="4" cols="120"  v-model="cancelSaleOrder.RejectReason"></textarea>
+                <button style="margin-top: 16px;" @click="onCancelOrder()" class="add_to_cart_button">
+                    Xác nhận hủy
+                </button>
             </div>
 
 
@@ -186,6 +207,9 @@ export default {
         return {
             user: {},
             account: {},
+            cancelSaleOrder:{
+                CancelReason:""
+            },
             saleOrders: [],
             orderItems: [],
             products: [],
@@ -202,10 +226,48 @@ export default {
             isShowAccount: true,
             isShowOrder: false,
             isShowDetailOrder: false,
-            formatMoney
+            formatMoney,
+            isCancel: false,
         }
     },
     methods: {
+        async onCancelOrder() {
+            let isCancel = true;
+            if(!this.cancelSaleOrder.RejectReason) {
+                this.toastContent = "REASONCANCEL"
+                this.isErrorToast = true;
+                this.isShowToast = true;
+                isCancel = false;
+                return;
+            }
+            if(isCancel) {
+                this.isShowLoading = true;
+                this.cancelSaleOrder.Status = 3;
+                const response =  await HTTPOrders.put(`/${this.cancelSaleOrder.SaleOrderId}`, this.cancelSaleOrder);
+                this.toastContent = "CANCELSUCESS"
+                this.isErrorToast = false;
+                this.isShowToast = true;
+                this.isShowLoading = false;
+                this.isCancel = false;
+
+            }
+
+
+        },
+        onCloseCancelOrder() {
+            this.isCancel = false;
+        },
+        onShowCancelOrder(orderDetail) {
+            if(orderDetail.saleOrder.Status == 0) {
+                this.cancelSaleOrder = orderDetail.saleOrder;
+                this.isCancel = true;
+            }
+            else {
+                this.toastContent = "FAILCANCEL"
+                this.isErrorToast = true;
+                this.isShowToast = true;
+            }
+        },
         onCloseOrderDetail() {
             this.isShowDetailOrder = false;
 
@@ -342,8 +404,7 @@ td {
     margin-top: 100px;
     font-size: 20px;
 }
-
-.order-detail-dialog {
+.cancel-order {
     position: fixed;
     background: white;
     padding: 20px;
@@ -351,6 +412,18 @@ td {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 1000px;
+    min-width: 700px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+.order-detail-dialog {
+    position: fixed;
+    background: white;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     min-width: 700px;
     border-radius: 5px;
     border: 1px solid #ccc;

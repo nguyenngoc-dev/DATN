@@ -19,7 +19,8 @@ const RESOURCES = {
       AUTHEN:"Đăng nhập thành công",
       SREGIS:"Đăng kí tài khoản thành công",
       UPDATEAUTH:"Cập nhật tài khoản thành công",
-      ORDERSUCCESS:"Đặt hàng thành công"
+      ORDERSUCCESS:"Đặt hàng thành công",
+      CANCELSUCESS:"Hủy đơn thành công",
     },
     ERROR: {
       ERRORSERVER:"Vui lòng liên hệ Store để được trợ giúp",
@@ -37,7 +38,9 @@ const RESOURCES = {
       EMPTY:"Bạn cần nhập đủ trường",
       OVERFLOW:"Số lượng sản phẩm còn lại không đáp ứng.",
       LOGREQ:"Bạn cần phải đăng nhập",
-      NEEDBUY:"Giỏ hàng trống, hãy thêm sản phẩm vào giỏ"
+      NEEDBUY:"Giỏ hàng trống, hãy thêm sản phẩm vào giỏ",
+      FAILCANCEL:"Không thể hủy đơn",
+      REASONCANCEL:"Bạn cần nhập lý do hủy",
     }
   },
   DepartmentId:'DepartmentId',
@@ -56,7 +59,10 @@ const RESOURCES = {
     OVERFLOW:"OVERFLOW",
     ORDERSUCCESS:"ORDERSUCCESS",
     LOGREQ:"LOGREQ",
-    NEEDBUY:"NEEDBUY"
+    NEEDBUY:"NEEDBUY",
+    FAILCANCEL:"FAILCANCEL",
+    CANCELSUCESS:"CANCELSUCESS",
+    REASONCANCEL:"REASONCANCEL"
   },
   FORM_TITLE: {
     PRODUCT:{
@@ -104,6 +110,24 @@ const RESOURCES = {
     {
       value: 120,
       text: "120 bản ghi trên 1 trang",
+    },
+  ],
+  ORDERSTATUS: [
+    {
+      value: 0,
+      text: "Đang chuẩn bị hàng",
+    },
+    {
+      value: 1,
+      text: "Đang giao hàng",
+    },
+    {
+      value: 2,
+      text: "100 bản ghi trên 1 trang",
+    },
+    {
+      value: 3,
+      text: "Đơn hàng bị hủy",
     },
   ],
 

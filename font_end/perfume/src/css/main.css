@@ -1361,3 +1361,9 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .navbar-nav-link:focus {
   background-color: var(--focus-color) !important;
 }
+.text-overflow {
+  white-space: nowrap;
+  width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

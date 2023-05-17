@@ -59,6 +59,9 @@ export default {
 			case RESOURCES.FORM_MODE.ADD:
 				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.ADD
 				break;
+			case RESOURCES.FORM_MODE.CANCELSUCESS:
+				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.CANCELSUCESS
+				break;
 			case RESOURCES.FORM_MODE.EDIT:
 				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.EDIT
 				break;
@@ -67,6 +70,9 @@ export default {
 				break;
 			case RESOURCES.FORM_MODE.ERROR:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.AUTHEN
+				break;
+			case RESOURCES.FORM_MODE.FAILCANCEL:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.FAILCANCEL
 				break;
 			case RESOURCES.FORM_MODE.AUTHEN:
 				this.toastContent = RESOURCES.FORM_MESSAGE.SUCCESS.AUTHEN
@@ -82,7 +88,10 @@ export default {
 				break;
 			case RESOURCES.FORM_MODE.DUPLICATE:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.DUP_AUTHEN
-				break;
+				break
+			case RESOURCES.FORM_MODE.REASONCANCEL:
+				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.REASONCANCEL
+				break
 			case RESOURCES.FORM_MODE.NEEDBUY:
 				this.toastContent = RESOURCES.FORM_MESSAGE.ERROR.NEEDBUY
 				break;

@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Perfume.Common
 {
@@ -87,6 +89,7 @@ namespace Perfume.Common
         /// </summary>
         public Guid ProductImageId { get; set; }
 
+        public IFormFile  AttachFile { get; set; }
         #endregion
 
     }

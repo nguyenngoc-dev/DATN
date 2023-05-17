@@ -865,12 +865,16 @@
         }
       },
       "Perfume.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0"
+        },
         "runtime": {
           "Perfume.Common.dll": {}
         }
       },
       "Perfume.DAL/1.0.0": {
         "dependencies": {
+          "CloudinaryDotNet": "1.20.0",
           "Dapper": "2.0.123",
           "MySqlConnector": "2.2.5",
           "Perfume.Common": "1.0.0"

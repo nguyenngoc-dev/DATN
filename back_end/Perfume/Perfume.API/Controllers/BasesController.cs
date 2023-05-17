@@ -100,7 +100,7 @@ namespace Perfume.API
         /// <returns>Status code, Dữ liệu trả về khi thành công hoặc lỗi</returns>
         /// author: Nguyễn Văn Ngọc(16/1/2023)
         [HttpPost]
-        public IActionResult InsertRecord([FromBody] T record)
+        public virtual IActionResult InsertRecord([FromBody] T record)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Perfume.API
         /// author: Nguyễn Văn Ngọc(16/1/2023)
         [HttpPut]
         [Route("{recordId}")]
-        public IActionResult UpdateRcord([FromBody] T record, [FromRoute] Guid recordId)
+        public virtual IActionResult UpdateRcord([FromBody] T record, [FromRoute] Guid recordId)
         {
             try
             {

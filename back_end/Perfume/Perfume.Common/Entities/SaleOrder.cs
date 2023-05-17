@@ -57,5 +57,11 @@ namespace Perfume.Common
         /// </summary>
         public int TotalPrice { get; set; }
 
+        /// <summary>
+        /// Lý do hủy đơn
+        /// </summary>
+
+        public string RejectReason { get; set; }
+
     }
 }

@@ -61,6 +61,24 @@ namespace Perfume.Common.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ.
+        /// </summary>
+        public static string CustomerAddress {
+            get {
+                return ResourceManager.GetString("CustomerAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên khách hàng.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete to database return 0.
         /// </summary>
         public static string DevMsg_DeleteFailed {
@@ -178,6 +196,15 @@ namespace Perfume.Common.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Số điện thoại.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proc_{0}_Multiple_Delete.
         /// </summary>
         public static string Proc_Delete {
@@ -246,6 +273,78 @@ namespace Perfume.Common.Resource {
         public static string Proc_Update {
             get {
                 return ResourceManager.GetString("Proc_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A1:H1.
+        /// </summary>
+        public static string Range_Worksheet {
+            get {
+                return ResourceManager.GetString("Range_Worksheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A2:H2.
+        /// </summary>
+        public static string Range_Worksheet_Date {
+            get {
+                return ResourceManager.GetString("Range_Worksheet_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã hóa đơn.
+        /// </summary>
+        public static string SaleOrderCode {
+            get {
+                return ResourceManager.GetString("SaleOrderCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ngày đặt.
+        /// </summary>
+        public static string SaleOrderDate {
+            get {
+                return ResourceManager.GetString("SaleOrderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trạng thái đơn hàng.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BÁO CÁO DOANH THU.
+        /// </summary>
+        public static string Title_Worksheet {
+            get {
+                return ResourceManager.GetString("Title_Worksheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Từ: {0} đến: {1}.
+        /// </summary>
+        public static string Title_Worksheet_Date {
+            get {
+                return ResourceManager.GetString("Title_Worksheet_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tổng tiền.
+        /// </summary>
+        public static string TotalPrice {
+            get {
+                return ResourceManager.GetString("TotalPrice", resourceCulture);
             }
         }
         

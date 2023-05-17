@@ -1,4 +1,6 @@
 ﻿using ClosedXML.Excel;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Http;
 using Perfume.Common;
@@ -7,9 +9,11 @@ using Perfume.DAL;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 
 namespace Perfume.BL
 {
@@ -20,6 +24,7 @@ namespace Perfume.BL
         /// Interface IProductDAL
         /// </summary>
         private IProductDAL _productDAL;
+        private readonly Cloudinary _cloudinary;
         #endregion
 
         #region Constructor
@@ -27,9 +32,10 @@ namespace Perfume.BL
         /// Hàm khởi tạo
         /// </summary>
         /// <param name="productDAL"></param>
-        public ProductBL(IProductDAL productDAL) : base(productDAL)
+        public ProductBL(IProductDAL productDAL, Cloudinary cloudinary) : base(productDAL)
         {
             _productDAL = productDAL;
+            _cloudinary = cloudinary;
         }
         #endregion
 
@@ -78,9 +84,9 @@ namespace Perfume.BL
                         Success = false,
                         Data = new ErrorResult(
                         ErrorCode.DuplicateCode,
-                        Resource.DevMsg_DuplicateCode,
-                        Resource.UserMsg_DuplicateCode,
-                        Resource.MoreInfo_DuplicateCode)
+                        Perfume.Common.Resource.Resource.DevMsg_DuplicateCode,
+                        Perfume.Common.Resource.Resource.UserMsg_DuplicateCode,
+                        Perfume.Common.Resource.Resource.MoreInfo_DuplicateCode)
                     };
                 }
                 else
@@ -188,6 +194,8 @@ namespace Perfume.BL
 
             return new Byte[1];
         }
+
+
 
         /// <summary>
         /// Ghi đè lại hàm ValidateCustom bên base

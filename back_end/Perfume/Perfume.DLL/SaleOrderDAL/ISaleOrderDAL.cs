@@ -15,5 +15,21 @@ namespace Perfume.DAL
         /// <returns>Mã sản phẩm mới</returns>
         /// author:Nguyễn Văn Ngọc(30/1/2023)
         public string GetNewSaleOrderCode();
+        
+        /// <summary>
+        /// Lọc hóa đơn theo ngày
+        /// </summary>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <returns></returns>
+        public object GetPagination(DateTime fromDate , DateTime toDate);
+
+        /// <summary>
+        /// Xuất excel danh sách hóa đơn
+        /// </summary>
+        /// <param name="fromDate">từ ngày</param>
+        /// <param name="toDate">đến ngày</param>
+        /// <returns></returns>
+        public IEnumerable<SaleOrder> GetSaleOrdersExcel(DateTime fromDate, DateTime toDate);
     }
 }

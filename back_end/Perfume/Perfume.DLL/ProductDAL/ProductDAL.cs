@@ -8,6 +8,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Perfume.DAL
 {
@@ -18,6 +21,7 @@ namespace Perfume.DAL
         /// Interface IDataContext
         /// </summary>
         private IDataContext _dataContext;
+        private readonly Cloudinary _cloudinary;
         #endregion
 
         #region Constructor
@@ -25,9 +29,10 @@ namespace Perfume.DAL
         /// Hàm khởi tạo
         /// </summary>
         /// <param name="dataContext"></param>
-        public ProductDAL(IDataContext dataContext)
+        public ProductDAL(IDataContext dataContext, Cloudinary cloudinary)
         {
             _dataContext = dataContext;
+            _cloudinary = cloudinary;
         }
         #endregion
 
@@ -42,7 +47,7 @@ namespace Perfume.DAL
         /// author: Nguyễn Văn Ngọc(16/1/2023)
         public object GetPagination(string? productFilter = "", int pageNumber = 1, int pageSize = 10)
         {
-            var sqlCommand = string.Format(Resource.Proc_GetFilter, typeof(Product).Name);
+            var sqlCommand = string.Format(Perfume.Common.Resource.Resource.Proc_GetFilter, typeof(Product).Name);
             var parameters = new DynamicParameters();
             parameters.Add("@p_PageSize", pageSize);
             parameters.Add("@p_PageNumber", pageNumber);
@@ -77,7 +82,7 @@ namespace Perfume.DAL
         {
             using (var connection = new MySqlConnection(DataContext.MySQLConnectionString))
             {
-                var sqlCommand = string.Format(Resource.Proc_GetNewCode, typeof(Product).Name);
+                var sqlCommand = string.Format(Perfume.Common.Resource.Resource.Proc_GetNewCode, typeof(Product).Name);
                 var data = connection.QueryFirstOrDefault(sqlCommand, commandType: System.Data.CommandType.StoredProcedure);
                 return data.NewProductCode;
             }
@@ -93,7 +98,7 @@ namespace Perfume.DAL
         {
             using (var connection = new MySqlConnection(DataContext.MySQLConnectionString))
             {
-                var sqlCommand = string.Format(Resource.Proc_GetCheckCode, typeof(Product).Name);
+                var sqlCommand = string.Format(Perfume.Common.Resource.Resource.Proc_GetCheckCode, typeof(Product).Name);
                 var parameters = new DynamicParameters();
                 parameters.Add("@p_ProductCode", product.ProductCode);
                 var emp = connection.QueryFirstOrDefault(sqlCommand, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
@@ -114,7 +119,7 @@ namespace Perfume.DAL
         /// author: Nguyễn Văn Ngọc(30/1/2023)
         public IEnumerable<Product> GetProductsExcel(string? productFilter = "", int pageNumber = 1, int pageSize = 10)
         {
-            var sqlCommand = string.Format(Resource.Proc_GetFilter, typeof(Product).Name);
+            var sqlCommand = string.Format(Perfume.Common.Resource.Resource.Proc_GetFilter, typeof(Product).Name);
             var parameters = new DynamicParameters();
             parameters.Add("@p_PageSize", pageSize);
             parameters.Add("@p_PageNumber", pageNumber);
@@ -129,6 +134,22 @@ namespace Perfume.DAL
                 // Tổng số trang
                 return data;
             }
+        }
+        protected override Product CustomParam(Product record, Guid recordId, bool isInsert)
+        {
+            if (!isInsert)
+            {
+                var imgDelete = new List<String>() { recordId.ToString() };
+                var uploadResultDelete = _cloudinary.DeleteResources(imgDelete.ToArray());
+            }
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(record.AttachFile.FileName, record.AttachFile.OpenReadStream()),
+                PublicId = recordId.ToString(),
+            };
+            var uploadResult = _cloudinary.Upload(uploadParams);
+            record.ImageUrl = uploadResult.Uri.AbsoluteUri;
+            return record;
         }
 
         #endregion

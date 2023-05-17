@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CustomerAddress" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Tên khách hàng</value>
+  </data>
   <data name="DevMsg_DeleteFailed" xml:space="preserve">
     <value>Delete to database return 0</value>
     <comment>Message cho Dev đọc khi Delete bản ghi từ Database thất bại</comment>
@@ -169,6 +175,9 @@
     <value>STT</value>
     <comment>Số thứ tự</comment>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
   <data name="Proc_Delete" xml:space="preserve">
     <value>Proc_{0}_Multiple_Delete</value>
     <comment>Template string cho procedure xóa 1 bản ghi trong bảng</comment>
@@ -200,6 +209,32 @@
   <data name="Proc_Update" xml:space="preserve">
     <value>Proc_{0}_Update</value>
     <comment>Template string cho procedure Sửa 1 bản ghi trong bảng</comment>
+  </data>
+  <data name="Range_Worksheet" xml:space="preserve">
+    <value>A1:H1</value>
+    <comment>Số hàng sử dụng trong excel của tiêu đề</comment>
+  </data>
+  <data name="Range_Worksheet_Date" xml:space="preserve">
+    <value>A2:H2</value>
+  </data>
+  <data name="SaleOrderCode" xml:space="preserve">
+    <value>Mã hóa đơn</value>
+  </data>
+  <data name="SaleOrderDate" xml:space="preserve">
+    <value>Ngày đặt</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái đơn hàng</value>
+  </data>
+  <data name="Title_Worksheet" xml:space="preserve">
+    <value>BÁO CÁO DOANH THU</value>
+    <comment>Tiêu đề trong excel</comment>
+  </data>
+  <data name="Title_Worksheet_Date" xml:space="preserve">
+    <value>Từ: {0} đến: {1}</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Tổng tiền</value>
   </data>
   <data name="UserMsg_DeleteFailed" xml:space="preserve">
     <value>Xóa bản ghi thất bại.</value>

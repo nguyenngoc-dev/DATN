@@ -66,6 +66,8 @@ namespace Perfume.BL
                 };
 
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+
             }
 
             return uploadResult;

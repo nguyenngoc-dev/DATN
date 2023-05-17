@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MkLfT7qVLpsJgYpNm0uFKpr6WraAgZ6yxsvOSDqQ9i7T6F39ylx6o54bop9QIz4ZOFhMgKHx/2bchKLfHQRddQ==",
+  "dgSpecHash": "KVjFGuBWSbnIV28lJ90axhsOge94W/Q6EH7EP1BlsMoIKHGYLQ8sr8YY34NHz4/4mb2jPFUrwqAE1P78pHOP9g==",
   "success": true,
   "projectFilePath": "D:\\hocki7\\Do_an\\Do_an\\back_end\\Perfume\\Perfume.Common\\Perfume.Common.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Welcome\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\Welcome\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\Welcome\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
+    "C:\\Users\\Welcome\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
+  ],
   "logs": []
 }

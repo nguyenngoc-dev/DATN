@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Reflection.Metadata;
 
 namespace Perfume.DAL
 {
@@ -96,12 +98,13 @@ namespace Perfume.DAL
         /// <param name="record">Đối tượng cần thêm</param>
         /// <returns>Trả về id bản ghi nếu thành công, emty id nếu thất bại</returns>
         /// author: Nguyễn Văn Ngọc(5/2/2023)
-        public Guid InsertRecord(T record)
+        public virtual Guid InsertRecord(T record)
         {
             Guid result;
             int rowAdds = 0;
             var parameters = new DynamicParameters();
             var newRecordID = Guid.NewGuid();
+            CustomParam(record, newRecordID, true);
             using (var connection = new MySqlConnection(DataContext.MySQLConnectionString))
             {
                 connection.Open();
@@ -141,10 +144,11 @@ namespace Perfume.DAL
         /// <param name="recordId">id cần sửa của đối tượng</param>
         /// <returns>Trả về id  nếu thành công, emty id nếu thất bại</returns>
         /// author: Nguyễn Văn Ngọc(5/2/2023)
-        public Guid UpdateRecord(T record, Guid recordId)
+        public virtual Guid UpdateRecord(T record, Guid recordId)
         {
             Guid result;
             int rowAdds = 0;
+            CustomParam(record,recordId, false);
             var parameters = new DynamicParameters();
             using (var connection = new MySqlConnection(DataContext.MySQLConnectionString))
             {
@@ -196,7 +200,10 @@ namespace Perfume.DAL
                 object propertyValue;
 
                 var primaryKeyAttribute = (PrimaryKeyAttribute?)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
-
+                if (property.PropertyType == typeof(IFormFile))
+                {
+                    continue;
+                }
                 if (primaryKeyAttribute != null)
                 {
                     propertyValue = recordId;
@@ -209,6 +216,10 @@ namespace Perfume.DAL
 
             }
         }
+        protected virtual T CustomParam(T record, Guid recordId, bool isInsert = true ) {
+            return record;
+        }
+
         #endregion
     }
 }

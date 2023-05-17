@@ -44,6 +44,45 @@ namespace Perfume.API
 
             }
         }
+
+
+        [HttpPost("filter")]
+        public IActionResult GetPagination([FromBody] OrderFilter orderFilter)
+        {
+            try
+            {
+                var result = _saleorderBL.GetPagination(orderFilter.FromDate, orderFilter.ToDate);
+                return StatusCode(StatusCodes.Status200OK, result);
+
+            }
+            catch (Exception ex)
+            {
+                return HandleExeption(ex, ErrorCode.Exception, Resource.MoreInfo_Exception);
+            }
+
+        }
+
+        /// <summary>
+        /// Xuất khẩu ra excel
+        /// </summary>
+        /// <param name="filterParam">Đối tượng nhận tham số</param>
+        /// <returns>File danh sách sản phẩm</returns>
+        /// author: Nguyễn Văn Ngọc(30/1/2023)
+        [HttpPost]
+        [Route("get-saleorders-excel")]
+        public IActionResult GetSaleOrdersExcel([FromBody] OrderFilter orderFilter)
+        {
+            try
+            {
+                var content = _saleorderBL.GetSaleOrdersExcel(orderFilter.FromDate, orderFilter.ToDate);
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Bao_cao_doanh_thu.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return HandleExeption(ex, ErrorCode.Exception, Resource.MoreInfo_Exception);
+            }
+        }
+
         /// <summary>
         /// Hàm xử lí ngoại lệ
         /// </summary>

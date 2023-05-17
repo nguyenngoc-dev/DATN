@@ -3,7 +3,7 @@ using Perfume.Common;
 using Perfume.DAL;
 using Perfume.BL;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-
+using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -39,10 +39,10 @@ builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
 builder.Services.AddScoped<IOrderItemBL, OrderItemBL>();
 builder.Services.AddScoped<IOrderItemDAL, OrderItemDAL>();
-builder.Services.AddScoped<IPhotoBL, PhotoBL>();
+builder.Services.AddScoped<IRegionBL, RegionBL>();
+builder.Services.AddScoped<IRegionDAL, RegionDAL>();
 builder.Services.AddScoped<IDeliveryBL, DeliveryBL>();
 builder.Services.AddScoped<IDeliveryDAL, DeliveryDAL>();
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 // Gán connection string cho MySQLConnectionString
 DataContext.MySQLConnectionString = builder.Configuration.GetConnectionString("MySqlConnectionString");
@@ -51,6 +51,11 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+builder.Services.AddSingleton(new Cloudinary(new Account(
+    "dwpca7u8h",
+    "562358288961459",
+    "SQeLgfnxZasW3wO4azh7aezWaG8"
+)));
 var app = builder.Build();
 app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 if (app.Environment.IsDevelopment())

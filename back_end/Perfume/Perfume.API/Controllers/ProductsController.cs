@@ -107,6 +107,14 @@ namespace Perfume.API
                 return HandleExeption(ex, ErrorCode.Exception, Resource.MoreInfo_Exception);
             }
         }
+        public override IActionResult InsertRecord([FromForm] Product record)
+        {
+            return base.InsertRecord(record);
+        }
+        public override IActionResult UpdateRcord([FromForm] Product record, [FromRoute] Guid recordId)
+        {
+            return base.UpdateRcord(record, recordId);
+        }
         #endregion
     }
 }

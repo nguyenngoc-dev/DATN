@@ -244,6 +244,32 @@ export default {
                 this.isShowLoading = true;
                 this.cancelSaleOrder.Status = 3;
                 const response =  await HTTPOrders.put(`/${this.cancelSaleOrder.SaleOrderId}`, this.cancelSaleOrder);
+                const res = await HTTPOrderItem.get();
+
+                let orderItem = res.data;
+                let orderItems=[];
+                orderItem.forEach(item => {
+                    if (item.SaleOrderId == this.cancelSaleOrder.SaleOrderId) {
+                        orderItems.push(item);
+                    }
+                });
+                if (orderItems.length) {
+                    for (let i = 0; i < orderItems.length; i++) {
+                        const response = await HTTP.get(`/${orderItems[i].ProductId}`);
+                        let updateProduct = response.data;
+                        if(updateProduct) {
+                            updateProduct.Quantity = updateProduct.Quantity + orderItems[i].Quantity;
+                            updateProduct.QuantityPurchased = updateProduct.QuantityPurchased - orderItems[i].Quantity;
+                            let formData = new FormData();
+                            for(const product in updateProduct) {
+                                formData.append(product, updateProduct[product]);
+                            }
+                            const response = await HTTP.put(`/${updateProduct.ProductId}`,formData);
+
+                        }
+                    }
+                }
+
                 this.toastContent = "CANCELSUCESS"
                 this.isErrorToast = false;
                 this.isShowToast = true;

@@ -97,7 +97,7 @@
               <router-link :to="'/detail/' + product.ProductId">
                 <img :src="product.ImageUrl" alt="" class="product-thumb">
               </router-link>
-              <h2><router-link :to="'/detail/' + product.ProductId">
+              <h2 style="max-width: 100%; overflow: hidden;"><router-link :to="'/detail/' + product.ProductId">
                                 {{ product.ProductName }}
                             </router-link></h2>
               <div class="product-wid-rating">
@@ -191,7 +191,7 @@ export default {
           });
           this.topSales = [this.products[5],this.products[6],this.products[7]];
           this.recentList = [this.products[4],this.products[8],this.products[10]];
-          this.newProduct = [this.products[0],this.products[1],this.products[2]]
+          this.newProduct = [this.products[3],this.products[4],this.products[2]]
           this.totalPage = res.data.TotalPage;
           this.isShowLoading = false;
           this.pageTotal = res.data.TotalRecord;

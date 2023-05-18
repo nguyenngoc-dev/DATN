@@ -316,14 +316,17 @@ export default {
                     if(res.data && this.cartResult.length) {
                         this.cartResult.forEach(item => {
                             item.value.Quantity = item.value.Quantity - item.count;
-                            item.value.QuantityPurchased = item.count; 
-                            HTTP.put(`/${item.value.ProductId}`,item.value) 
+                            item.value.QuantityPurchased = item.count;
+                            let formData = new FormData();
+                            for(const product in item.value) {
+                            formData.append(product, item.value[product]);
+                            }
+                            HTTP.put(`/${item.value.ProductId}`,formData) 
                             me.orderItem.ProductId = item.value.ProductId;
                             me.orderItem.SaleOrderId = res.data;
                             me.orderItem.Quantity = item.count;
                             me.orderItem.Price = item.value.Price;
-                            HTTPOrderItem.post("",me.orderItem);
-                                
+                            HTTPOrderItem.post("",me.orderItem);  
                         });
                     }
                     this.isShowLoading = false;

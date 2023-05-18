@@ -23,7 +23,7 @@
                                 <img :src="product.ImageUrl" alt="Lỗi ảnh">
                             </router-link>
                         </div>
-                        <h2>
+                        <h2 style="max-width: 100%; overflow: hidden;">
                             <router-link :to="'/detail/' + product.ProductId" class="text-overflow">
                                 {{ product.ProductName }}
                             </router-link>
